@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<body>
+
+    {% block title %}Deletar{% endblock %}
+    {% block main %}
+    
+    <main class="container-fluid">
+        <section class="row">
+            <h1>Deletar de sugestão</h1>
+            <div class="col">
+                <p>Voce realmente deseja deletar essa sugestão?</p>
+                <form action="" method="post" class="d-flex">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">Voltar</a>
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    {% endblock %}
+
+</body>
+</html>

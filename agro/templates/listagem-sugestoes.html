@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Listagem{% endblock %}
+
+{% block main %}
+<main class="container-fluid bg-white">
+    <section class="row">
+        <div class="col">
+            <h1 class="my-3">Listagem de sugestões</h1>
+            {% for message in messages %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            
+            {% for cont in contato %}
+            <div class="card my-3">
+                <div class="card-body text-secondary">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <h2 class="text-secondary me-2">{{ cont.nome }}</h2>
+                            <p class="text-secondary">{{ cont.email }}</p>
+                        </div>
+
+                        <div class="links d-flex align-items-center">
+                            <a href="{% url 'editar_sugestao' cont.id %}" class="btn btn-primary">Editar</a>
+                            <a href="{% url 'deletar_sugestao' cont.id %}" class="btn btn-danger">Deletar</a>
+                        </div>
+                    </div>
+                    <span class="text-secondary">Telefone: {{ cont.telefone }}</span>
+                    <p class="text-secondary">{{ cont.sugestao }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}
