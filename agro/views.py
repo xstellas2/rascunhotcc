@@ -15,8 +15,8 @@ def gafanhotos(request):
 def sobre_nos(request):
     return render(request, 'sobre_nos.html')
 
-def cadastrar(request):
-    return render(request, 'cadastrar.html')
+def formulario(request):
+    return render(request, 'formulario.html')
 
 def listagem_sugestoes(request):
     return render(request, 'listagem_sugestoes.html')

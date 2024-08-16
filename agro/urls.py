@@ -7,6 +7,6 @@ urlpatterns = [
     path('agrotoxico/', views.agrotoxico, name='agrotoxico'),
     path('gafanhotos/', views.gafanhotos, name='gafanhotos'),
     path('sobre_nos/', views.sobre_nos, name='sobre_nos'),
-    path('cadastrar/', views.cadastrar, name='cadastrar'),
+    path('formulario/', views.formulario, name='formulario'),
     path('listagem_sugestoes/', views.listagem_sugestoes, name='listagem_sugestoes'),
 ]

@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-<body>
-    
-    {% block title %}Agrotóxicos{% endblock %}
-    {% block main %}
+
+
+
+{% block title %}Agrotóxicos{% endblock %}
+{% block main %}
 
     <main>
         <div class="conteudo mx-5">
@@ -11,6 +12,8 @@
                 O uso de agrotóxicos no Brasil e no mundo
             </h1>
             <img src="{% static 'img/image15.png' %}" alt="">
+            <img src="{% static 'img/stella.png' %}" alt="">
+
             <div class="row mb-5">
                 <!-- Coluna da esquerda com vantagens -->
                 <div class="col-md-5">
@@ -86,7 +89,5 @@
 
         </div>
         </main>
-        {% endblock %}
-
-</body>
-</html>
+        
+    {% endblock %}
