@@ -30,6 +30,8 @@
                     <p class="text-secondary">{{ cont.sugestao }}</p>
                 </div>
             </div>
+            {% empty %}
+            <p class="text-muted">Nenhuma sugestão encontrada.</p>
             {% endfor %}
         </div>
     </section>

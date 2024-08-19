@@ -4,49 +4,43 @@
 {% block title %}Sobre nós{% endblock %}
 
 {% block main %}
-<main>
-    <div class="conteudo-sn mx-5">
-        <div class="row mx-3">
-            <!-- Coluna da esquerda com vantagens -->
-            <div class="col-md-6">
-                <h2 class="mb-6 my-5" style="align-items: start;">Sobre o site</h2>
-                <p style="text-align: left;">
-                    O site PragaZero começou a ser desenvolvido através de um projeto integrador do curso de informática do IFRN -
-                    Campus Pau dos Ferros. Com o objetivo de facilitar o acesso de pequenos e médios agricultores rurais
-                    a informações de possíveis causas relacionadas à grande quantidade de pragas na agricultura e do
-                    combate efetivo das mesmas, promovendo uma conscientização sobre o controle biológico. <br>
-                    Promovendo um site que reúna informações verídicas e mais relevantes sobre o combate e controle de pragas
-                    na agricultura, visamos o aumento da produção e o fortalecimento da agricultura familiar.
-                </p>
-            </div>
-
-            <div class="col-md-4"></div>
-
-            <div class="col-md-2">
-                <img class="my-3 mt-4" src="{% static 'img/image 13.png' %}" alt="">
-                <img class="my-3" src="{% static 'img/image 11.png' %}" alt="">
-                <img class="my-3" src="{% static 'img/image 12.png' %}" alt="">
-            </div>
+<div class="conteudo-sn mx-5">
+    <div class="row mx-3">
+        <!-- Coluna da esquerda com vantagens -->
+        <div class="col-md-6">
+            <h2 class="mb-4 mt-5">Sobre o site</h2>
+            <p style="text-align: left;">
+                O site PragaZero foi desenvolvido como parte de um projeto integrador do curso de informática do IFRN - Campus Pau dos Ferros. 
+                O objetivo é facilitar o acesso de pequenos e médios agricultores a informações sobre pragas agrícolas e métodos de controle, 
+                promovendo a conscientização sobre o controle biológico. Buscamos fornecer informações precisas e relevantes sobre o combate 
+                e controle de pragas na agricultura, com o intuito de aumentar a produção e fortalecer a agricultura familiar.
+            </p>
         </div>
 
-        <div class="row mx-5 pb-5">
-            <!-- Coluna da esquerda com vantagens -->
-            <div class="col-md-4">
-                <img class="img-sn my-3" src="{% static 'img/stella.jpg' %}" alt="">
-                <img class="img-sn my-3" src="{% static 'img/evelyn.jpg' %}" alt="">
-            </div>
+        <div class="col-md-4"></div>
 
-            <div class="col-md-2"></div>
-
-            <div class="col-md-6">
-                <h2 class="mb-6 my-5" style="text-align: right;">Sobre as criadoras</h2>
-                <p style="text-align: right;">
-                    Maria Stella Teodoro e Evellyn Thauany Alves de Lima são estudantes de 
-                    informática do IFRN - Campus Pau dos Ferros, ambas têm 18 anos
-                    e são potiguares.
-                </p>
-            </div>
+        <div class="col-md-2">
+            <img class="my-3" src="{% static 'img/image 13.png' %}" alt="Imagem 13">
+            <img class="my-3" src="{% static 'img/image 11.png' %}" alt="Imagem 11">
+            <img class="my-3" src="{% static 'img/image 12.png' %}" alt="Imagem 12">
         </div>
     </div>
-</main>
+
+    <div class="row mx-5 pb-5">
+        <!-- Coluna da esquerda com imagens das criadoras -->
+        <div class="col-md-4">
+            <img class="img-sn my-3" src="{% static 'img/stella.jpg' %}" alt="Maria Stella Teodoro">
+            <img class="img-sn my-3" src="{% static 'img/evelyn.jpg' %}" alt="Evellyn Thauany Alves de Lima">
+        </div>
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-6">
+            <h2 class="mb-4 mt-5" style="text-align: right;">Sobre as criadoras</h2>
+            <p style="text-align: right;">
+                Maria Stella Teodoro e Evellyn Thauany Alves de Lima são estudantes de informática do IFRN - Campus Pau dos Ferros. Ambas têm 18 anos e são potiguares.
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}

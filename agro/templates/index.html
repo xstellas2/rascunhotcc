@@ -1,8 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt">
 
 <head>
-    {% load static %}
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,13 +21,12 @@
     <title>PragaZero</title>
 </head>
 
-
 <body>
     <header class="navbar">
-        <div class="flex">
+        <div class="d-flex justify-content-between align-items-center w-100">
             <div class="dropend">
                 <button type="button" class="btn dropdown mx-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'img/image.png' %}" alt="">
+                    <img src="{% static 'img/image.png' %}" alt="Menu">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{% url 'index' %}">Início</a></li>
@@ -38,22 +39,20 @@
                 </ul>
             </div>
             <a class="link-nav" href="{% url 'index' %}">
-                <h1><img src="{% static 'img/image1.png' %}" alt=""></h1>
+                <img src="{% static '/img/image1.png' %}" alt="PragaZero">
             </a>
             <a class="link-nav" href="{% url 'index' %}">
                 <h2 class="pragazero">PragaZero</h2>
             </a>
+            <form class="form-inline d-flex mx-5">
+                <input class="form-control mr-sm-2 rounded" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <a class="nav-item ms-3" href="#"><img src="{% static 'img/search.png' %}" alt="Pesquisar"></a>
+            </form>
         </div>
-        <form class="form flex mx-5">
-            <!-- Input arredondado para pesquisa -->
-            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
-            <!-- Ícone de pesquisa -->
-            <a class="nav-item ms-3" href="#"><img src="{% static 'img/search.png' %}" alt=""></a>
-        </form>
     </header>
     <main>
         <section>
-            <div class="flex around">
+            <div class="d-flex justify-content-around align-items-center mb-5">
                 <div class="text" style="margin-bottom: 150px;">
                     <h1>Interessado(a) em saber como combater efetivamente as pragas na agricultura?</h1>
                     <p>As pragas de importância agrícola são as espécies que podem comprometer a produção de plantas
@@ -61,7 +60,7 @@
                         Confira as informações abaixo para ficar por dentro do assunto!</p>
                 </div>
                 <div>
-                    <img style="margin-top: 80px;" src="{% static 'img/image3.png' %}" alt="">
+                    <img style="margin-top: 80px;" src="{% static 'img/image3.png' %}" alt="Informações sobre pragas">
                 </div>
             </div>
         </section>
@@ -70,61 +69,61 @@
             <h3 class="tx-carrosel h3-carrosel">Aqui temos uma lista com alguns tópicos importantes sobre as pragas e
                 como evitá-las:</h3>
 
-            <div id="carouselExample" class="carousel slide allcarrosel">
+            <div id="carouselExample" class="carousel slide allcarrosel" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="flex itens-carrosel">
+                        <div class="d-flex itens-carrosel">
                             <a href="{% url 'lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="...">
+                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
                                 <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
                                     plantações? Confira já!</p>
                             </a>
                             <a href="{% url 'agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="...">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantages do uso de agrotóxicos nas
+                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
+                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
                                     plantações!</p>
                             </a>
                             <a href="{% url 'gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="...">
+                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
                                 <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
                                     plantações e como evitá-los!</p>
                             </a>
                         </div>
                     </div>
-                    <div class="carousel-item ">
-                        <div class="flex itens-carrosel">
+                    <div class="carousel-item">
+                        <div class="d-flex itens-carrosel">
                             <a href="{% url 'agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="...">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantages do uso de agrotóxicos nas
+                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
+                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
                                     plantações!</p>
                             </a>
                             <a href="{% url 'gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="...">
+                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
                                 <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
                                     plantações e como evitá-los!</p>
                             </a>
                             <a href="{% url 'lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="...">
+                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
                                 <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
                                     plantações? Confira já!</p>
                             </a>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="flex itens-carrosel">
+                        <div class="d-flex itens-carrosel">
                             <a href="{% url 'gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="...">
+                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
                                 <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
                                     plantações e como evitá-los!</p>
                             </a>
                             <a href="{% url 'lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="...">
+                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
                                 <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
                                     plantações? Confira já!</p>
                             </a>
                             <a href="{% url 'agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="...">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantages do uso de agrotóxicos nas
+                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
+                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
                                     plantações!</p>
                             </a>
                         </div>
@@ -143,10 +142,10 @@
             </div>
         </div>
 
-        <section class="flex center" style="justify-content: center;">
-            <div class="flex around">
+        <section class="d-flex justify-content-center align-items-center mb-5">
+            <div class="d-flex justify-content-around align-items-center w-100">
                 <div style="margin-right: 15px;">
-                    <img src="{% static 'img/image7.png' %}" alt="">
+                    <img src="{% static 'img/image7.png' %}" alt="Cuidados com plantações">
                 </div>
                 <div style="margin-left: 15px;" class="text">
                     <h1 style="text-align: start;">Dicas de cuidados com as plantações</h1>
@@ -157,28 +156,28 @@
             </div>
         </section>
 
-        <section class="flex center">
+        <section class="d-flex justify-content-center align-items-center mb-5">
             <h2 style="font-size: 28px; font-weight: bold;">Nossas últimas notícias e dicas sobre o mundo agro!</h2>
         </section>
 
-        <section class="flex">
-            <div class="flex column mx-5">
+        <section class="d-flex justify-content-around align-items-center mb-5">
+            <div class="d-flex flex-column mx-5">
                 <h3>Dicas de hoje!</h3>
                 <div>
-                    <img src="{% static 'img/image8.png' %}" alt="">
+                    <img src="{% static 'img/image8.png' %}" alt="Dicas de hoje">
                 </div>
             </div>
-            <div class="flex column mx-5">
+            <div class="d-flex flex-column mx-5">
                 <h3>Notícias do campo!</h3>
                 <div>
-                    <img src="{% static 'img/image9.png' %}" alt="">
+                    <img src="{% static 'img/image9.png' %}" alt="Notícias do campo">
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="flex end">
+        <div class="d-flex flex-column align-items-end">
             <h2>PragaZero</h2>
             <p>Seu parceiro no combate às pragas agrícolas</p>
             <p>© PragaZero 2024. Todos os direitos reservados.</p>

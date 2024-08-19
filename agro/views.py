@@ -21,5 +21,8 @@ def formulario(request):
 def listagem_sugestoes(request):
     return render(request, 'listagem_sugestoes.html')
 
-def sobre_nos(request):
-    return render(request, 'sobre_nos.html')
+def deletar_sugestao(request):
+    return render(request, 'deletar_sugestao.html')
+
+def editar_sugestoes(request):
+    return render(request, 'editar_sugestoes.html')

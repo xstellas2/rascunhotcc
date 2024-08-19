@@ -1,80 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt">
-   
-    <head>
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/static.css' %}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="shortcut icon" href="{% static 'img/image 1.png' %}" type="image/x-icon">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Poppins&family=Pridi&family=Raleway:wght@400;600&display=swap"
-            rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-        <title>{% block title %}Meu Site{% endblock %}</title>
-    </head>
+
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/static.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'img/image1.png' %}" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Poppins&family=Pridi&family=Raleway:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>{% block title %}Meu Site{% endblock %}</title>
+</head>
+
 <body>
     <header class="navbar">
-        <div class="flex">
+        <div class="d-flex justify-content-between">
             <div class="dropend">
                 <button type="button" class="btn dropdown mx-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'img/image.png' %}" alt="">
+                    <img src="{% static 'img/image.png' %}" alt="Ícone do menu">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" >Início</a></li>
-                    <li><a class="dropdown-item" >Lagartas na agricultura</a></li>
-                    <li><a class="dropdown-item" >Uso de agrotóxicos</a></li>
-                    <li><a class="dropdown-item" >Danos causados pelos gafanhotos</a></li>
-                    <li><a class="dropdown-item" >Quem somos?</a></li>
-                    <li><a class="dropdown-item" >Fale conosco</a></li>
-                    <li><a class="dropdown-item" >Sugestões dadas</a></li>
+                    <li><a class="dropdown-item" href="#">Início</a></li>
+                    <li><a class="dropdown-item" href="#">Lagartas na agricultura</a></li>
+                    <li><a class="dropdown-item" href="#">Uso de agrotóxicos</a></li>
+                    <li><a class="dropdown-item" href="#">Danos causados pelos gafanhotos</a></li>
+                    <li><a class="dropdown-item" href="#">Quem somos?</a></li>
+                    <li><a class="dropdown-item" href="#">Fale conosco</a></li>
+                    <li><a class="dropdown-item" href="#">Sugestões dadas</a></li>
                 </ul>
             </div>
-            <a class="link-nav" >
-                <h1><img src="{% static 'img/image 1.png' %}" alt=""></h1>
+            <a class="link-nav" href="#">
+                <h1><img src="{% static 'img/image1.png' %}" alt="Logotipo"></h1>
             </a>
-            <a class="link-nav" >
+            <a class="link-nav" href="#">
                 <h2 class="pragazero">PragaZero</h2>
             </a>
         </div>
-        <div class="flex">
-            <a class="nav-item link-nav" >Início</a>
-            <input class="form-control mr-sm-2 rounded" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
-            <a class="nav-item ms-3" tic 'img/search.png' %} alt=""></a>
+        <div class="d-flex align-items-center">
+            <a class="nav-item link-nav" href="#">Início</a>
+            <input class="form-control rounded" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
+            <a class="nav-item ms-3" href="#"><img src="{% static 'img/search.png' %}" alt="Ícone de pesquisa"></a>
         </div>
     </header>
-    
+
     {% block main %}
     {% endblock %}
 
     <footer>
-        <div class="flex around" style="padding: 5%;">
+        <div class="d-flex justify-content-around" style="padding: 5%;">
             <div>
                 <h1>PragaZero</h1>
-                <div class="flex around">
+                <div class="d-flex justify-content-around">
                 </div>
             </div>
-            <div class="flex around">
+            <div class="d-flex justify-content-around">
                 <div style="margin-right: 15px;">
                     <h2>Sobre nós</h2>
-                    <a >Quem somos?</a>
+                    <a href="#">Quem somos?</a>
                 </div>
                 <div style="margin-left: 15px;">
                     <h2>Sugestões?</h2>
-                    <a >Clique aqui</a>
+                    <a href="#">Clique aqui</a>
                 </div>
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>

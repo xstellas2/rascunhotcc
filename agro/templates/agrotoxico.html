@@ -1,93 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
 {% block title %}Agrotóxicos{% endblock %}
 {% block main %}
+<div class="conteudo mx-5">
+    <h1 class="my-5">O uso de agrotóxicos no Brasil e no mundo</h1>
+    <img src="{% static 'img/image15.png' %}" alt="Imagem relacionada a agrotóxicos">
+    <img src="{% static 'img/stella.png' %}" alt="Imagem relacionada a agrotóxicos">
 
-    <main>
-        <div class="conteudo mx-5">
-            <h1 class="my-5">
-                O uso de agrotóxicos no Brasil e no mundo
-            </h1>
-            <img src="{% static 'img/image15.png' %}" alt="">
-            <img src="{% static 'img/stella.png' %}" alt="">
-
-            <div class="row mb-5">
-                <!-- Coluna da esquerda com vantagens -->
-                <div class="col-md-5">
-                    <h2 class="mb-4" style="text-align: center;">Vantagens</h2>
-                    <p>
-                        <strong>1. Controle eficiente de pragas e doenças:</strong> Os agrotóxicos podem ser altamente
-                        eficazes no controle de
-                        insetos, lagartas, ácaros, fungos e outras pragas que atacam as culturas agrícolas. Isso ajuda a
-                        evitar danos significativos às plantas e perdas na produção. <br> <br>
-
-                        <strong>2. Aumento da produtividade:</strong> O controle de pragas e doenças permite que as plantas
-                        cresçam mais
-                        saudáveis e produzam colheitas de maior qualidade e quantidade. Isso é essencial para garantir a
-                        segurança alimentar em uma população mundial crescente. <br> <br>
-
-                        <strong>3. Redução de perdas pós-colheita:</strong> Os agrotóxicos também podem ajudar a proteger as
-                        culturas após a
-                        colheita, durante o armazenamento e o transporte, evitando perdas causadas por pragas e patógenos.
-                        <br> <br>
-
-                        <strong>4. Facilidade de aplicação:</strong> Os agrotóxicos são geralmente fáceis de aplicar,
-                        podendo ser
-                        pulverizados diretamente nas plantas ou no solo, o que torna a sua utilização relativamente simples.
-                        <br> <br>
-
-                        <strong>5. Desenvolvimento de variedades de culturas mais sensíveis:</strong> Em alguns casos, o uso
-                        de agrotóxicos
-                        permitiu o cultivo de variedades de plantas mais sensíveis, que de outra forma não seriam viáveis
-                        devido à pressão das pragas.
-                    </p>
-                </div>
-
-                <!-- Coluna do meio com o "X" -->
-                <div class="col-md-2 text-center">
-                    <h3>X</h3>
-                </div>
-
-                <!-- Coluna da direita com desvantagens -->
-                <div class="col-md-5 ">
-                    <h2 class="mb-4" style="text-align: center;">Desvantagens</h2>
-                    <p>
-                        <strong>1. Riscos à saúde humana:</strong> Os agrotóxicos podem representar riscos à saúde humana
-                        quando não são
-                        manuseados corretamente ou quando ocorrem contaminações acidentais. Exposição a longo prazo a esses
-                        produtos pode estar associada a problemas de saúde, como doenças neurológicas, câncer e distúrbios
-                        hormonais. <br> <br>
-
-                        <strong>2. Impactos ambientais negativos:</strong> Alguns agrotóxicos podem ter efeitos prejudiciais
-                        sobre a vida
-                        selvagem e o meio ambiente em geral. Eles podem contaminar solos, águas superficiais e subterrâneas,
-                        afetando ecossistemas aquáticos e terrestres. <br> <br>
-
-                        <strong>3. Resistência de pragas:</strong> O uso repetido e excessivo de agrotóxicos pode levar ao
-                        desenvolvimento de
-                        resistência em pragas e patógenos, tornando-os mais difíceis de serem controlados no futuro. <br>
-                        <br>
-
-                        <strong>4. Efeito sobre polinizadores:</strong> Alguns agrotóxicos podem afetar negativamente
-                        insetos polinizadores,
-                        como abelhas, borboletas e outros polinizadores importantes para a reprodução de muitas culturas.
-                        <br> <br>
-
-                        <strong>5. Impacto na biodiversidade:</strong> O uso intensivo de agrotóxicos pode reduzir a
-                        biodiversidade agrícola
-                        e afetar negativamente organismos benéficos, como predadores naturais de pragas. <br> <br>
-
-                        <strong>6. Risco de contaminação de alimentos:</strong> Resíduos de agrotóxicos podem permanecer em
-                        alimentos
-                        colhidos, representando um risco para a saúde humana quando consumidos em quantidades elevadas.
-                    </p>
-                </div>
-            </div>
-
+    <div class="row mb-5">
+        <!-- Coluna da esquerda com vantagens -->
+        <div class="col-md-5">
+            <h2 class="mb-4 text-center">Vantagens</h2>
+            <p>
+                <strong>1. Controle eficiente de pragas e doenças:</strong> Os agrotóxicos podem ser altamente eficazes no controle de insetos, lagartas, ácaros, fungos e outras pragas que atacam as culturas agrícolas. Isso ajuda a evitar danos significativos às plantas e perdas na produção. <br><br>
+                
+                <strong>2. Aumento da produtividade:</strong> O controle de pragas e doenças permite que as plantas cresçam mais saudáveis e produzam colheitas de maior qualidade e quantidade. Isso é essencial para garantir a segurança alimentar em uma população mundial crescente. <br><br>
+                
+                <strong>3. Redução de perdas pós-colheita:</strong> Os agrotóxicos também podem ajudar a proteger as culturas após a colheita, durante o armazenamento e o transporte, evitando perdas causadas por pragas e patógenos. <br><br>
+                
+                <strong>4. Facilidade de aplicação:</strong> Os agrotóxicos são geralmente fáceis de aplicar, podendo ser pulverizados diretamente nas plantas ou no solo, o que torna a sua utilização relativamente simples. <br><br>
+                
+                <strong>5. Desenvolvimento de variedades de culturas mais sensíveis:</strong> Em alguns casos, o uso de agrotóxicos permitiu o cultivo de variedades de plantas mais sensíveis, que de outra forma não seriam viáveis devido à pressão das pragas.
+            </p>
         </div>
-        </main>
-        
-    {% endblock %}
+
+        <!-- Coluna do meio com o "X" -->
+        <div class="col-md-2 text-center">
+            <h3>X</h3>
+        </div>
+
+        <!-- Coluna da direita com desvantagens -->
+        <div class="col-md-5">
+            <h2 class="mb-4 text-center">Desvantagens</h2>
+            <p>
+                <strong>1. Riscos à saúde humana:</strong> Os agrotóxicos podem representar riscos à saúde humana quando não são manuseados corretamente ou quando ocorrem contaminações acidentais. Exposição a longo prazo a esses produtos pode estar associada a problemas de saúde, como doenças neurológicas, câncer e distúrbios hormonais. <br><br>
+                
+                <strong>2. Impactos ambientais negativos:</strong> Alguns agrotóxicos podem ter efeitos prejudiciais sobre a vida selvagem e o meio ambiente em geral. Eles podem contaminar solos, águas superficiais e subterrâneas, afetando ecossistemas aquáticos e terrestres. <br><br>
+                
+                <strong>3. Resistência de pragas:</strong> O uso repetido e excessivo de agrotóxicos pode levar ao desenvolvimento de resistência em pragas e patógenos, tornando-os mais difíceis de serem controlados no futuro. <br><br>
+                
+                <strong>4. Efeito sobre polinizadores:</strong> Alguns agrotóxicos podem afetar negativamente insetos polinizadores, como abelhas, borboletas e outros polinizadores importantes para a reprodução de muitas culturas. <br><br>
+                
+                <strong>5. Impacto na biodiversidade:</strong> O uso intensivo de agrotóxicos pode reduzir a biodiversidade agrícola e afetar negativamente organismos benéficos, como predadores naturais de pragas. <br><br>
+                
+                <strong>6. Risco de contaminação de alimentos:</strong> Resíduos de agrotóxicos podem permanecer em alimentos colhidos, representando um risco para a saúde humana quando consumidos em quantidades elevadas.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
