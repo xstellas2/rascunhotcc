@@ -4,6 +4,8 @@
 {% block title %}Listagem{% endblock %}
 
 {% block main %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
 <main class="container-fluid bg-white">
     <section class="row">
         <div class="col">
@@ -22,8 +24,8 @@
                         </div>
 
                         <div class="links d-flex align-items-center">
-                            <a href="{% url 'editar_sugestao' cont.id %}" class="btn btn-primary">Editar</a>
-                            <a href="{% url 'deletar_sugestao' cont.id %}" class="btn btn-danger">Deletar</a>
+                            <a href="{% url 'editar_sugestao' %}" class="btn btn-primary">Editar</a>
+                            <a href="{% url 'deletar_sugestao' %}" class="btn btn-danger">Deletar</a>
                         </div>
                     </div>
                     <span class="text-secondary">Telefone: {{ cont.telefone }}</span>

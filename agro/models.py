@@ -1,9 +1,12 @@
 from django.db import models
 
-# Create your models here.
 
-class Contato(models.Model):
-    name = models.CharField(max_length=155)
-    email = models.EmailField(max_length=155)
-    telefone = models.CharField(max_length=155)
-    sugestão = models.CharField(max_length=155)
+class Sugestao(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    telefone = models.CharField(max_length=15, blank=True, null=True)
+    sugestao = models.TextField()
+
+    def __str__(self):
+        return self.nome
+
