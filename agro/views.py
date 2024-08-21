@@ -68,8 +68,8 @@ def sobre_nos(request):
 def formulario(request):
     return render(request, 'formulario.html')
 
-def listagem_sugestoes(request):
-    return render(request, 'listagem_sugestoes.html')
+
+
 
 def deletar_sugestao(request):
     return render(request, 'deletar_sugestao.html')

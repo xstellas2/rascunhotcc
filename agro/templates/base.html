@@ -28,13 +28,13 @@
                     <img src="{% static 'img/image.png' %}" alt="Ícone do menu">
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Início</a></li>
-                    <li><a class="dropdown-item" href="#">Lagartas na agricultura</a></li>
-                    <li><a class="dropdown-item" href="#">Uso de agrotóxicos</a></li>
-                    <li><a class="dropdown-item" href="#">Danos causados pelos gafanhotos</a></li>
-                    <li><a class="dropdown-item" href="#">Quem somos?</a></li>
-                    <li><a class="dropdown-item" href="#">Fale conosco</a></li>
-                    <li><a class="dropdown-item" href="#">Sugestões dadas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'index' %}">Início</a></li>
+                    <li><a class="dropdown-item" href="{% url 'lagartas' %}">Lagartas na agricultura</a></li>
+                    <li><a class="dropdown-item" href="{% url 'agrotoxico' %}">Uso de agrotóxicos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'gafanhotos' %}">Danos causados pelos gafanhotos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'sobre_nos' %}">Quem somos?</a></li>
+                    <li><a class="dropdown-item" href="{% url 'formulario' %}">Fale conosco</a></li>
+                    <li><a class="dropdown-item" href="{% url 'listar_sugestoes' %}">Sugestões dadas</a></li>
                 </ul>
             </div>
             <a class="link-nav" href="#">
@@ -64,11 +64,11 @@
             <div class="d-flex justify-content-around">
                 <div style="margin-right: 15px;">
                     <h2>Sobre nós</h2>
-                    <a href="#">Quem somos?</a>
+                    <a href="{% url 'sobre_nos' %}">Quem somos?</a>
                 </div>
                 <div style="margin-left: 15px;">
                     <h2>Sugestões?</h2>
-                    <a href="#">Clique aqui</a>
+                    <a href="{% url 'formulario' %}">Clique aqui</a>
                 </div>
             </div>
         </div>
