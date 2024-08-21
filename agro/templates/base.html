@@ -37,15 +37,15 @@
                     <li><a class="dropdown-item" href="{% url 'listar_sugestoes' %}">Sugestões dadas</a></li>
                 </ul>
             </div>
-            <a class="link-nav" href="#">
+            <a class="link-nav" href="{% url 'index' %}">
                 <h1><img src="{% static 'img/image1.png' %}" alt="Logotipo"></h1>
             </a>
-            <a class="link-nav" href="#">
+            <a class="link-nav" href="{% url 'sobre_nos' %}">
                 <h2 class="pragazero">PragaZero</h2>
-            </a>
+            </a>          
         </div>
         <div class="d-flex align-items-center">
-            <a class="nav-item link-nav" href="#">Início</a>
+            <a class="nav-item link-nav" href="{% url 'index' %}">Início</a>
             <input class="form-control rounded" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
             <a class="nav-item ms-3" href="#"><img src="{% static 'img/search.png' %}" alt="Ícone de pesquisa"></a>
         </div>
