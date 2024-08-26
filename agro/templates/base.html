@@ -46,8 +46,11 @@
         </div>
         <div class="d-flex align-items-center">
             <a class="nav-item link-nav" href="{% url 'index' %}">Início</a>
-            <input class="form-control rounded" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
-            <a class="nav-item ms-3" href="#"><img src="{% static 'img/search.png' %}" alt="Ícone de pesquisa"></a>
+
+            <form method="GET" action="{% url 'search' %}">
+                <input type="text" name="query" placeholder="Pesquisar...">
+                <button type="submit">Pesquisa</button>
+            </form>                        
         </div>
     </header>
 
@@ -59,6 +62,10 @@
             <div>
                 <h1>PragaZero</h1>
                 <div class="d-flex justify-content-around">
+                <img src="{% static 'img/tiktok.png' %}" alt="tiktok">
+                <img src="{% static 'img/twitter.png' %}" alt="twitter">
+                <img src="{% static 'img/facebook.png' %}" alt="facebook">
+                <img src="{% static 'img/instagram.png' %}" alt="instagram">
                 </div>
             </div>
             <div class="d-flex justify-content-around">

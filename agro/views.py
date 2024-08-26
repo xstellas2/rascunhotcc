@@ -3,8 +3,8 @@ from django.db.models import Q
 from .models import Sugestao
 from django.contrib import messages
 from django.shortcuts import redirect
-
 from django.shortcuts import get_object_or_404
+from .models import Pesquisa
 
 def editar_sugestao(request, id):
     sugestao = get_object_or_404(Sugestao, id=id)
@@ -67,6 +67,13 @@ def sobre_nos(request):
 
 def formulario(request):
     return render(request, 'formulario.html')
+
+def search(request):
+    query = request.GET.get('query')
+    results = []
+    if query:
+        results = Pesquisa.objects.filter(praga__icontains=query)  # Pesquisa pelo título
+    return render(request, 'search_results.html', {'results': results, 'query': query})
 
 
 

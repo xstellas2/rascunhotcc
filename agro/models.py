@@ -10,3 +10,11 @@ class Sugestao(models.Model):
     def __str__(self):
         return self.nome
 
+# models.py
+class Pesquisa(models.Model):
+    praga = models.CharField(max_length=100)
+    agrotoxico = models.CharField(max_length=100)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return self.praga

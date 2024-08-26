@@ -158,31 +158,46 @@
         </section>
 
         <section class="d-flex justify-content-center align-items-center mb-5">
-            <h2 style="font-size: 28px; font-weight: bold;">Fale conosco!</h2>
-        </section>
-
-        <section class="d-flex justify-content-around align-items-center mb-5">
-            <div class="d-flex flex-column mx-5">
-                <h3>Dicas de hoje!</h3>
-                <div>
-                    <img src="{% static 'img/image8.png' %}" alt="Dicas de hoje">
+            <div class="d-flex justify-content-around align-items-center w-100">
+                <div style="margin-right: 15px;">
+                    <img src="{% static 'img/image8.png' %}" alt="Para que servem os agrotóxicos?">
                 </div>
-            </div>
-            <div class="d-flex flex-column mx-5">
-                <h3>Uau</h3>
-                <div>
-                    <img src="{% static 'img/image11.png' %}" alt="Noticias do campo">
+                <div style="margin-left: 15px;" class="text">
+                    <h1 style="text-align: start;">Para que servem os agrotóxicos?</h1>
+                    <p style="text-align: start; margin-bottom: 100px;">Os agrotóxicos são compostos químicos, físicos ou biológicos amplamente empregados no setor agropecuário, especialmente em monoculturas. 
+                        A Anvisa classifica os agrotóxicos em quatro classes de danos à saúde humana: pouco tóxicos, medianamente tóxicos, altamente tóxicos e extremamente tóxicos. Nos rótulos desses produtos, além das cores que representam cada classe, são indicadas também as doses de letalidade de cada uma.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="d-flex flex-column align-items-end">
-        <div class="container d-flex flex-column align-items-center text-center">
-            <h2>PragaZero </h2>
-            <p>Seu parceiro no combate às pragas agrícolas</p>
-            <p>© PragaZero 2024. Todos os direitos reservados.</p>
+    <footer>
+        <div class="d-flex justify-content-around" style="padding: 5%;">
+            <div>
+                <h1>PragaZero</h1>
+                <div class="d-flex justify-content-around">
+                <img src="{% static 'img/tiktok.png' %}" alt="tiktok">
+                <img src="{% static 'img/twitter.png' %}" alt="twitter">
+                <img src="{% static 'img/facebook.png' %}" alt="facebook">
+                <img src="{% static 'img/instagram.png' %}" alt="instagram">
+                </div>
+            </div>
+            <div class="d-flex justify-content-around">
+                <div style="margin-right: 15px;">
+                    <h2>Sobre nós</h2>
+                    <a href="{% url 'sobre_nos' %}">Quem somos?</a>
+                </div>
+                <div style="margin-left: 15px;">
+                    <h2>Sugestões?</h2>
+                    <a href="{% url 'formulario' %}">Clique aqui</a>
+                </div>
+            </div>
         </div>
+            <div class="container d-flex flex-column align-items-center text-center">
+                <h2>PragaZero </h2>
+                <p>Seu parceiro no combate às pragas agrícolas</p>
+                <p>© PragaZero 2024. Todos os direitos reservados.</p>
+            </div>
     </footer>
 </body>
 
