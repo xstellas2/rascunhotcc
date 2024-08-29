@@ -6,44 +6,39 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<div class="container">
+<div class="container formulario">
     <div class="row">
         <div class="col-lg-10 mx-auto my-5">
             <div class="card border-0 shadow rounded-3 my-5">
-                <h3 class="mx-5 mt-4">Olá! ;)</h3>
-                <h2 class="mx-5 mt-4">Deixe sua Sugestão</h2>
-                <form method="POST" action="{% url 'salvar_sugestao' %}" >
+                <h3 class="mx-5 mt-4">Olá! :D</h3>
+                <h4 class="mx-5 mt-2">Vamos conversar?</h4>
+                <form method="POST" action="{% url 'agro:salvar_sugestao' %}">
                     {% csrf_token %}
-                    <!-- Campo Nome -->
-                    <div class="form-group my-2">
-                        <label for="nome">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+                    
+                    <div class="form-group">
+                        {{ form.nome.label_tag }}<br>
+                        {{ form.nome }}
                     </div>
                 
-                    <!-- Campo E-mail -->
-                    <div class="form-group my-2">
-                        <label for="email">E-mail:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
+                    <div class="form-group">
+                        {{ form.email.label_tag }}<br>
+                        {{ form.email }}
                     </div>
-                
-                    <!-- Campo Telefone -->
-                    <div class="form-group my-2">
-                        <label for="telefone">Telefone:</label>
-                        <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite seu telefone">
+
+                    <div class="form-group">
+                        {{ form.telefone.label_tag }}<br>
+                        {{ form.telefone }}
                     </div>
-                
-                    <!-- Campo Sugestão -->
-                    <div class="form-group my-2">
-                        <label for="sugestao">Deixe sua Sugestão:</label>
-                        <textarea class="form-control" id="sugestao" name="sugestao" rows="3" placeholder="Digite sua sugestão"></textarea>
+
+                    <div class="form-group">
+                        {{ form.sugestao.label_tag }}<br>
+                        {{ form.sugestao }}
                     </div>
-                
-                    <!-- Botão Enviar -->
+
                     <div class="text-center">
-                        <button style="margin: auto;" type="submit" class="btn btn-custom my-2">Enviar</button>
+                        <button type="submit" class="btn btn-custom">Enviar</button>
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>
