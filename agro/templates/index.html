@@ -39,12 +39,13 @@
                     <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
                 </ul>
             </div>
-            <a class="link-nav" href="{% url 'agro:index' %}">
-                <img src="{% static '/img/image1.png' %}" alt="PragaZero">
+            <a class="link-nav header-logo" href="{% url 'agro:index' %}">
+                <img src="{% static 'img/image1.png' %}" alt="Logotipo">
             </a>
-            <a class="link-nav" href="{% url 'agro:sobre_nos' %}">
+            <a class="link-nav header-name" href="{% url 'agro:sobre_nos' %}">
                 <h2 class="pragazero">PragaZero</h2>
             </a>
+            
             <form method="GET" action="{% url 'agro:search' %}">
                 <input type="text" name="query" placeholder="Pesquisar...">
                 <button type="submit">Pesquisa</button>
@@ -171,34 +172,35 @@
         </section>
     </main>
 
-    <footer>
-        <div class="d-flex justify-content-around" style="padding: 5%;">
-            <div>
-                <h1>PragaZero</h1>
-                <div class="d-flex justify-content-around">
-                <img src="{% static 'img/tiktok.png' %}" alt="tiktok">
-                <img src="{% static 'img/twitter.png' %}" alt="twitter">
-                <img src="{% static 'img/facebook.png' %}" alt="facebook">
-                <img src="{% static 'img/instagram.png' %}" alt="instagram">
-                </div>
-            </div>
+    <footer class="footer">
+        <div class="footer-top">
             <div class="d-flex justify-content-around">
-                <div style="margin-right: 15px;">
-                    <h2>Sobre nós</h2>
-                    <a href="{% url 'agro:sobre_nos' %}">Quem somos?</a>
+                <div class="footer-logo text-center">
+                    <h1>PragaZero</h1>
+                    <div class="social-media">
+                        <a href="#"><img src="{% static 'img/tiktok.png' %}" alt="tiktok"></a>
+                        <a href="#"><img src="{% static 'img/twitter.png' %}" alt="twitter"></a>
+                        <a href="#"><img src="{% static 'img/facebook.png' %}" alt="facebook"></a>
+                        <a href="#"><img src="{% static 'img/instagram.png' %}" alt="instagram"></a>
+                    </div>
                 </div>
-                <div style="margin-left: 15px;">
-                    <h2>Sugestões?</h2>
-                    <a href="{% url 'agro:formulario' %}">Clique aqui</a>
+                <div class="footer-links d-flex">
+                    <div class="footer-link-group">
+                        <h2>Sobre nós</h2>
+                        <a href="{% url 'agro:sobre_nos' %}">Quem somos?</a>
+                    </div>
+                    <div class="footer-link-group">
+                        <h2>Sugestões?</h2>
+                        <a href="{% url 'agro:formulario' %}">Clique aqui</a>
+                    </div>
                 </div>
             </div>
         </div>
-            <div class="container d-flex flex-column align-items-center text-center">
-                <h2>PragaZero </h2>
-                <p>Seu parceiro no combate às pragas agrícolas</p>
-                <p>© PragaZero 2024. Todos os direitos reservados.</p>
-            </div>
+        <div class="footer-bottom text-center">
+            <p>© PragaZero 2024. Todos os direitos reservados.</p>
+        </div>
     </footer>
+    
 </body>
 
 </html>

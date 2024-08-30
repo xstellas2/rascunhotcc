@@ -13,34 +13,76 @@ main {
     background: #C8C8C8;
 }
 
-footer {
-    background-color: #3C5E4B;
-    height: 250px;
+:root {
+    --primary-color: #007bff; 
+    --secondary-color: #C8C8C8; 
+    --background-color: #3C5E4B;
+    --hover-color: #0056b3; 
+    --text-color: #C8C8C8; 
 }
 
-footer h1 {
-    font-family: Merriweather, serif;
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 38px;
-    color: #FFFFFF;
+.footer {
+    background-color: var(--background-color); /* Cor de fundo do footer */
+    padding: 2rem 5%; /* Espaçamento interno */
 }
 
-footer h2 {
-    font-family: Pridi, serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 23px;
-    color: #FFFFFF;
+.footer-top {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--secondary-color); /* Linha divisória entre seções */
 }
 
-footer a {
-    font-family: Poppins, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    color: #C5C5C5;
+.footer-logo h1 {
+    margin-bottom: 1rem;
+    color: #C8C8C8; /* Cor preta para o nome "PragaZero" */
 }
+
+.footer-logo .social-media {
+    margin-top: 1rem;
+}
+
+.footer-logo .social-media a {
+    margin: 0 0.5rem;
+}
+
+.footer-logo .social-media img {
+    width: 24px; /* Ajuste o tamanho dos ícones sociais */
+    transition: transform 0.3s ease; /* Transição suave para efeito de hover */
+}
+
+.footer-logo .social-media a:hover img {
+    transform: scale(1.1); /* Aumenta o ícone ao passar o mouse */
+}
+
+.footer-links {
+    margin-top: 1rem;
+}
+
+.footer-link-group {
+    margin: 0 1rem;
+}
+
+.footer-link-group h2 {
+    margin-bottom: 0.5rem;
+    color: #C8C8C8; /* Cor preta para os títulos dos links */
+}
+
+.footer-link-group a {
+    color: var(--secondary-color); /* Cor dos links */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transição suave para a cor do link */
+}
+
+.footer-link-group a:hover {
+    color: var(--primary-color); /* Cor do link ao passar o mouse */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.footer-bottom {
+    padding-top: 1rem;
+    border-top: 1px solid var(--secondary-color); /* Linha divisória superior */
+    color: var(--text-color); /* Cor do texto */
+}
+
 
 .flex {
     display: flex;
@@ -55,17 +97,25 @@ footer a {
     justify-content: center;
 }
 
-.pragazero {
-    font-family: Merriweather, serif;
-    font-size: 25px;
-    font-weight: 400;
-    line-height: 31px;
-    margin-left: 10px;
+.link-nav {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Remove sublinhado dos links */
 }
 
-.link-nav {
-    text-decoration: none;
-    color: #E1E1E1;
+.link-nav img {
+    width: 60px; /* Ajuste o tamanho da imagem conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.link-nav h2.pragazero {
+    font-family: Merriweather, serif;
+    font-size: 25px; /* Tamanho do texto, ajuste se necessário */
+    font-weight: 400;
+    line-height: 31px;
+    color: #ffffff; /* Ajuste a cor conforme o fundo */
+    margin: 0; /* Remove margens padrão */
 }
 
 .nav-item {
@@ -219,57 +269,121 @@ a {
     height: 170px;
 }
 
-
-form {
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-label {
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-input[type="text"],
-input[type="email"],
-select {
+/* Estilos para o formulário */
+.container.formulario {
+    background-color: #f2f2f2; /* Fundo claro */
+    padding: 40px;
+    border-radius: 8px; /* Borda levemente arredondada */
+    max-width: 700px; /* Largura máxima */
     width: 100%;
+    margin: 0 auto; /* Centraliza o formulário */
+}
+
+h3, h4 {
+    text-align: left;
+    color: #333333;
+    margin-left: 10px; /* Pequena margem à esquerda para alinhamento */
+}
+
+h3 {
+    font-size: 1.5rem; /* Tamanho da fonte maior */
+}
+
+h4 {
+    font-size: 1.25rem; /* Tamanho da fonte menor */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espaço entre os campos */
+}
+
+.form-group label {
+    color: #333333;
+    font-size: 0.875rem; /* Tamanho da fonte menor */
+    margin-bottom: 5px;
+    display: block;
+    margin-left: 10px; /* Margem à esquerda */
+}
+
+.form-control {
+    width: calc(100% - 20px); /* Largura ajustada para compensar as margens */
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 20px;
+    margin-left: 10px; /* Margem à esquerda */
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #e0e0e0;
 }
 
-button[type="submit"] {
-    width: 100%;
-    background-color: #6c63ff;
+textarea.form-control {
+    height: 100px;
+    resize: none;
+}
+
+.form-control:focus {
+    border-color: #3C5E4B;
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-custom {
+    background-color: #4e5d50;
     color: white;
-    padding: 10px;
     border: none;
+    padding: 10px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
+    width: calc(100% - 20px); 
+    margin-left: 10px; 
+    margin-top: 20px;
 }
 
-button[type="submit"]:hover {
-    background-color: #5a54cc;
+.btn-custom:hover {
+    background-color: #3c4e3b;
 }
 
-div {
-    margin-bottom: 10px;
+form {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 15px; /* Borda arredondada menor */
+    padding: 10px; /* Reduz o padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Largura máxima do formulário ajustada */
+    margin: 20px 50px; /* Ajusta a margem para centralizar e mover para a direita */
+}
+
+input[type="text"] {
+    border: 1px solid #ccc; /* Define a cor e o estilo da borda */
+    border-radius: 10px; /* Define o arredondamento da borda do campo de entrada */
+    padding: 8px; /* Adiciona espaçamento interno reduzido */
+    margin: 0; /* Remove margens externas, se houver */
+    font-size: 0.9rem; /* Define o tamanho da fonte para menor */
+    background-color: #ffffff; /* Define a cor de fundo do campo de entrada */
+    flex: 1; /* Faz com que o campo de entrada ocupe o espaço restante */
+}
+
+button {
+    border: none; /* Remove a borda padrão do botão */
+    border-radius: 10px; /* Define o arredondamento da borda do botão */
+    padding: 8px 16px; /* Adiciona espaçamento interno ao botão */
+    font-size: 0.9rem; /* Define o tamanho da fonte do botão */
+    background-color: #4e5d50; /* Define a cor de fundo do botão */
+    color: white; /* Define a cor do texto do botão */
+    cursor: pointer; /* Define o cursor como ponteiro para indicar clicável */
+    margin-left: 10px; /* Adiciona margem esquerda para espaçamento */
+}
+
+button:hover {
+    background-color: #3c4e3b; /* Cor de fundo do botão quando em hover */
+}
+
+.link-nav {
+    color: #C5C5C5; /* Cor cinza para o texto */
+    text-decoration: none; /* Remove sublinhado dos links */
+}
+
+.link-nav:hover {
+    color: #999; /* Cor cinza mais escuro ao passar o mouse, se desejar */
 }

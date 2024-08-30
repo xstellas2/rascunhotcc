@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.db.models import Q
-from .models import Sugestao
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
@@ -18,11 +17,6 @@ def salvar_sugestao(request):
         form = SugestaoForm()
     return render(request, 'formulario.html', {'form': form})
 
-
-
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib import messages
-from .models import Sugestao
 
 def deletar_sugestao(request, pk):
     print(pk)
@@ -75,6 +69,4 @@ def search(request):
     return render(request, 'search_results.html', {'results': results, 'query': query})
 
 
-def editar_sugestoes(request):
-    return render(request, 'editar_sugestoes.html')
 
