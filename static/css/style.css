@@ -269,45 +269,49 @@ a {
     width: 150px;
     height: 170px;
 }
+
+/* Container principal */
 .container.formulario {
-    background-color: #f2f2f2; /* Fundo claro */
-    padding: 40px;
-    border-radius: 8px; /* Borda levemente arredondada */
-    max-width: 700px; /* Largura máxima */
+    background-color: #f2f2f2;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 700px;
     width: 100%;
-    margin: 0 auto; /* Centraliza o formulário */
+    margin: 0 auto;
 }
 
+/* Cabeçalhos */
 h3, h4 {
     text-align: left;
     color: #333333;
-    margin-left: 20px; /* Pequena margem à esquerda para alinhamento */
+    margin-left: 20px;
 }
 
 h3 {
-    font-size: 1.5rem; /* Tamanho da fonte maior */
+    font-size: 1.5rem;
 }
 
 h4 {
-    font-size: 1.25rem; /* Tamanho da fonte menor */
+    font-size: 1.25rem;
 }
 
+/* Grupo de formulários */
 .form-group {
-    margin-bottom: 15px; /* Espaço entre os campos */
+    margin-bottom: 15px;
 }
 
 .form-group label {
-    color: #333333;
-    font-size: 0.875rem; /* Tamanho da fonte menor */
+    color: #3C5E4B;
+    font-size: 0.875rem;
     margin-bottom: 5px;
     display: block;
-    margin-left: 10px; /* Margem à esquerda */
+    margin-left: 10px;
 }
 
 .form-control {
-    width: calc(100% - 20px); /* Largura ajustada para compensar as margens */
+    width: calc(100% - 20px);
     padding: 10px;
-    margin-left: 10px; /* Margem à esquerda */
+    margin-left: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
@@ -325,6 +329,7 @@ textarea.form-control {
     outline: none;
 }
 
+/* Botões customizados */
 .btn-custom {
     background-color: #4e5d50;
     color: white;
@@ -333,8 +338,8 @@ textarea.form-control {
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    width: calc(100% - 20px); 
-    margin-left: 10px; 
+    width: calc(100% - 20px);
+    margin-left: 10px;
     margin-top: 20px;
 }
 
@@ -346,12 +351,12 @@ textarea.form-control {
 .search-bar-form {
     display: flex;
     align-items: center;
-    background-color: #e0e0e0;
+    background-color: #4e5d50; /* Verde */
     border-radius: 15px;
-    padding: 10px;
+    padding: 5px; /* Reduzido */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 400px;
-    margin: 20px 50px;
+    margin: 10px 50px; /* Reduzido */
 }
 
 .search-bar-form input[type="text"] {
@@ -381,88 +386,14 @@ textarea.form-control {
 
 /* Estilos para o container principal */
 .container-fluid {
-    padding: 20px;
-    background-color: #f8f9fa; /* Cor de fundo leve para destacar as cards */
-}
-
-/* Estilos para as cards */
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-body {
-    padding: 20px;
-    background-color: #ffffff; /* Fundo branco para contraste com o texto */
-    border-radius: 10px;
-}
-
-/* Títulos e textos */
-h1, h2 {
-    color: #343a40; /* Cinza escuro para títulos */
-}
-
-p, span {
-    color: #6c757d; /* Cinza médio para texto */
-}
-
-/* Estilo para os botões */
-.links .br-button.circle {
-    border-radius: 50%;
-    padding: 10px 15px;
-    margin-left: 10px;
-    font-weight: bold;
-    color: #ffffff; /* Cor do texto */
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-}
-
-/* Cor para o botão de editar */
-.links .edit-button {
-    background-color: #4e5d50 /* Verde */
-}
-
-/* Cor para o botão de excluir */
-.links .delete-button {
-    background-color: #dc3545; /* Vermelho */
-}
-
-/* Efeito ao passar o mouse sobre os botões */
-.links .br-button.circle:hover {
-    opacity: 0.9;
-    transform: scale(1.05); /* Leve aumento para destaque */
-}
-
-/* Estilos para o modal */
-.modal-content {
-    border-radius: 10px;
-}
-
-.modal-header, .modal-footer {
-    border: none;
-}
-.d-flex {
-    display: flex;
-}
-
-.flex-column {
-    flex-direction: column;
-}
-
-.flex-grow-1 {
+    background-color: #3C5E4B; /* Cor verde */
     flex-grow: 1;
+    overflow-y: auto;
 }
 
-.container-fluid {
-    flex-grow: 1;
-    overflow-y: auto; /* Adicionado para permitir rolagem */
-    padding-bottom: 10px; /* Adicionado para espaço no final antes do footer */
-}
+/* Estilos para os cards */
 .card {
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -474,9 +405,41 @@ p, span {
     flex-direction: column;
 }
 
+/* Títulos e textos */
+h1, h2 {
+    color: #ffffff; /* Títulos em branco */
+}
+
+p, span {
+    color: #ffffff; /* Texto em branco */
+}
+
+/* Botões de ações */
 .links .br-button {
     border-radius: 20px;
     padding: 10px 20px;
     color: white;
     margin-left: 10px;
+}
+
+.links .edit-button {
+    background-color: #4e5d50; /* Verde */
+}
+
+.links .delete-button {
+    background-color: #dc3545; /* Vermelho */
+}
+
+.links .br-button.circle:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* Estilos para o modal */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header, .modal-footer {
+    border: none;
 }
