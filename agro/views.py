@@ -35,7 +35,7 @@ def editar_sugestao(request, pk):
             return redirect('agro:listar_sugestoes')
     else:
         form = SugestaoForm(instance=sugestao)
-    return render(request, 'editar_sugestao.html', {'form': form})
+    return render(request, 'editar_sugestoes.html', {'form': form})
 
 def listar_sugestoes(request):
     contato = Sugestao.objects.all()  # Recupera todas as sugestões

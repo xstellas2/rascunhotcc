@@ -7,7 +7,7 @@ from .views import salvar_sugestao, listar_sugestoes, editar_sugestao, deletar_s
 app_name = 'agro'
 
 urlpatterns = [
-    path('', views.index, name='index'),  # A URL base do aplicativo 'agro' corresponde à view 'index'
+    path('', views.index, name='index'),  
     path('sugestao/', salvar_sugestao, name='salvar_sugestao'),
     path('search/', search, name='search'),
     path('listagem_sugestoes/', listar_sugestoes, name='listar_sugestoes'),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('sobre_nos/', views.sobre_nos, name='sobre_nos'),
     path('formulario/', views.formulario, name='formulario'),
     path('deletar_sugestao/<int:pk>/', deletar_sugestao, name='agro-delete'),
-    path('editar_sugestoes/<int:pk>/', editar_sugestao, name='editar_sugestoes'),  # Corrigido para 'editar_sugestao'
+    path('editar_sugestoes/<int:pk>/', editar_sugestao, name='editar_sugestao'),  
 ]
 
 if settings.DEBUG:

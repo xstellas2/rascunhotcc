@@ -25,22 +25,23 @@
                                 </div>
 
                                 <div class="links d-flex align-items-center">
-                                    <a class="br-button circle"
-                                        href="{% url 'editar_sugestao' cont.pk %}"
+                                    <a class="br-button circle edit-button"
+                                        href="{% url 'agro:editar_sugestao' cont.pk %}"
                                         aria-label="editar"
                                         title="editar">
                                         Editar sugestão
                                     </a>
-
-                                    <a class="br-button circle"
+                                
+                                    <a class="br-button circle delete-button"
                                         type="button"
                                         data-bs-toggle="modal" 
                                         data-bs-target="#exampleModal-{{ cont.pk }}"
                                         aria-label="excluir"
                                         title="excluir">
-                                        Excluir sugestao
+                                        Excluir sugestão
                                     </a>
                                 </div>
+                                
                             </div>
                             <span class="text-secondary">Telefone: {{ cont.telefone }}</span>
                             <p class="text-secondary">{{ cont.sugestao }}</p>
@@ -55,7 +56,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Deseja excluir o registro do stand {{ cont.localizacao }}?
+                                            Deseja excluir permanentemente {{ cont.localizacao }}?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
