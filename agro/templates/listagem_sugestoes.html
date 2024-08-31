@@ -6,72 +6,75 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<main class="container-fluid bg-white">
-    <section class="row">
-        <div class="col">
-            <h1 class="my-3">Listagem de sugestões</h1>
-            {% for message in messages %}
-                <div class="alert alert-success">{{ message }}</div>
-            {% endfor %}
+<div class="d-flex flex-column" style="min-height: 100vh;">
+    <main class="container-fluid flex-grow-1">
+        <section class="row">
+            <div class="col">
+                <h1 class="my-3">Listagem de sugestões</h1>
+                {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
 
-            {% if contato %}
-                {% for cont in contato %}
-                    <div class="card my-3">
-                        <div class="card-body text-secondary">
-                            <div class="d-flex justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <h2 class="text-secondary me-2">{{ cont.nome }}</h2>
-                                    <p class="text-secondary">{{ cont.email }}</p>
-                                </div>
+                {% if contato %}
+                    {% for cont in contato %}
+                        <div class="card my-3">
+                            <div class="card-body text-secondary">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <h2 class="text-secondary me-2">{{ cont.nome }}</h2>
+                                        <p class="text-secondary">{{ cont.email }}</p>
+                                    </div>
 
-                                <div class="links d-flex align-items-center">
-                                    <a class="br-button circle edit-button"
-                                        href="{% url 'agro:editar_sugestao' cont.pk %}"
-                                        aria-label="editar"
-                                        title="editar">
-                                        Editar sugestão
-                                    </a>
-                                
-                                    <a class="br-button circle delete-button"
-                                        type="button"
-                                        data-bs-toggle="modal" 
-                                        data-bs-target="#exampleModal-{{ cont.pk }}"
-                                        aria-label="excluir"
-                                        title="excluir">
-                                        Excluir sugestão
-                                    </a>
+                                    <div class="links d-flex align-items-center">
+                                        <a class="br-button circle edit-button"
+                                            href="{% url 'agro:editar_sugestao' cont.pk %}"
+                                            aria-label="editar"
+                                            title="editar">
+                                            Editar sugestão
+                                        </a>
+                                    
+                                        <a class="br-button circle delete-button"
+                                            type="button"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#exampleModal-{{ cont.pk }}"
+                                            aria-label="excluir"
+                                            title="excluir">
+                                            Excluir sugestão
+                                        </a>
+                                    </div>
+                                    
                                 </div>
-                                
+                                <span class="text-secondary">Telefone: {{ cont.telefone }}</span>
+                                <p class="text-secondary">{{ cont.sugestao }}</p>
                             </div>
-                            <span class="text-secondary">Telefone: {{ cont.telefone }}</span>
-                            <p class="text-secondary">{{ cont.sugestao }}</p>
-                        </div>
-                        <form action="{% url 'agro:agro-delete' cont.pk %}" method="post">
-                            {% csrf_token %}
-                            <div class="modal fade" id="exampleModal-{{ cont.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação de Exclusão</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Deseja excluir permanentemente {{ cont.localizacao }}?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            <form action="{% url 'agro:agro-delete' cont.pk %}" method="post">
+                                {% csrf_token %}
+                                <div class="modal fade" id="exampleModal-{{ cont.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação de Exclusão</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Deseja excluir permanentemente {{ cont.localizacao }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p class="text-muted">Nenhuma sugestão encontrada.</p>
-            {% endif %}
-        </div>
-    </section>
-</main>
+                            </form>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">Nenhuma sugestão encontrada.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+</div>
 {% endblock %}

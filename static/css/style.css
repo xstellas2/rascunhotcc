@@ -444,3 +444,39 @@ p, span {
 .modal-header, .modal-footer {
     border: none;
 }
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.container-fluid {
+    flex-grow: 1;
+    overflow-y: auto; /* Adicionado para permitir rolagem */
+    padding-bottom: 10px; /* Adicionado para espaço no final antes do footer */
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.links .br-button {
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    margin-left: 10px;
+}
