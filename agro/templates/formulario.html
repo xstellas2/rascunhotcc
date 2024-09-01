@@ -10,10 +10,11 @@
     <div class="row">
         <div class="col-lg-10 mx-auto my-5">
             <div class="card border-0 shadow rounded-3 my-5">
-                <h3 class="mx-5 mt-4">Olá! :D</h3>
-                <h4 class="mx-5 mt-2">Vamos conversar?</h4>
+                <h3 class="mx-5 mt-4">Olá! Gostaríamos de ouvir você!</h3>
+                <h4 class="mx-5 mt-2">Compartilhe suas opiniões e sugestões com a gente!</h4>
                 <form method="POST" action="{% url 'agro:salvar_sugestao' %}">
                     {% csrf_token %}
+
                     
                     <div class="form-group">
                         {{ form.nome.label_tag }}<br>

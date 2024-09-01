@@ -387,7 +387,6 @@ textarea.form-control {
 /* Estilos para o container principal */
 .container-fluid {
     background-color: #3C5E4B; /* Cor verde */
-    flex-grow: 1;
     overflow-y: auto;
 }
 
