@@ -47,10 +47,16 @@
         <div class="d-flex align-items-center">
             <a class="nav-item link-nav" href="{% url 'agro:index' %}">Início</a>
 
-            <form method="GET" action="{% url 'agro:search' %}" class="search-bar-form">
-                <input type="text" name="query" placeholder="Pesquisar...">
-                <button type="submit">Pesquisa</button>
-            </form>                       
+            <div class="header-sign-in">
+                <a
+                  href="{% url 'agro:custom_login' %}}"
+                  class="br-sign-in small"
+                  type="button"
+                  data-trigger="login">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span class="d-sm-inline">Entrar</span>
+                </a>
+            </div>                    
         </div>
     </header>
 

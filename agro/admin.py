@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Sugestao, Pesquisa
+from .models import Sugestao,Praga
 
 admin.site.register(Sugestao)
-admin.site.register(Pesquisa)
+admin.site.register(Praga)
 
 
