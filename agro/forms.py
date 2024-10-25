@@ -1,7 +1,7 @@
 from django import forms
 from .models import Sugestao
 from django import forms
-from agro.models import Agro
+from agro.models import Praga
 
 
 class SugestaoForm(forms.ModelForm):
@@ -35,24 +35,14 @@ class AgroForm(forms.ModelForm):
         widget=forms.FileInput(attrs={
             "class": "form-control-file",
         }),
-        required=False  # Permite que o campo seja opcional
+        required=True 
     )
     
 
-    def clean_localizacao(self):
-        localizacao = self.cleaned_data["localizacao"]
-        if localizacao == "Raphael":
-            raise forms.ValidationError(
-                "O campo localização não pode ser Raphael.",
-            )
-        return localizacao
-
     class Meta:
-        model = Agro
+        model = Praga
         fields = (
             "nome",
             "descricao",
             "imagem",
-            "localizacao",
-            "valor",
         )

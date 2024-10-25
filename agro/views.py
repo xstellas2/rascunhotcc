@@ -11,39 +11,36 @@ from django.urls import reverse_lazy
 from django.views import generic
 from .forms import AgroForm
 from .models import Agro
-
-
-# Create your views here.
-class AgroListView(LoginRequiredMixin, generic.ListView):
-    model = Agro
-    paginate_by = 5
-
-class AgroDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Agro
-
-class AgroCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
-    model = Agro
-    form_class = AgroForm
-    success_url = reverse_lazy("agro:agro-list")
-    success_message = "agro cadastrado com sucesso!"
-
-
-class AgroUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
-    model = Agro
-    form_class = AgroForm
-    success_url = reverse_lazy("agro:agro-list")
-    success_message = "agro atualizada com sucesso!"
-
-class AgroDeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Agro
-    success_url = reverse_lazy("agro:agro-list")
-    success_message = "agro excluído com sucesso!"
-
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib.auth.decorators import login_required
+from .models import Praga
+
+# View para cadastro de nova praga
+@login_required
+def nova_praga(request):
+    if request.method == 'POST':
+        form = AgroForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Redireciona para a página de listagem após o cadastro
+            return redirect('agro:agro_list')
+    else:
+        form = AgroForm()
+    
+    return render(request, 'agro/nova_praga.html', {'form': form})
+
+# View para listar as pragas cadastradas
+@login_required
+def agro_list(request):
+    pragas = Praga.objects.all()  # Lista todas as pragas
+    return render(request, 'agro/agro_list.html', {'pragas': pragas})
+
+
+
 
 def custom_login(request):
     if request.method == 'POST':
@@ -54,7 +51,7 @@ def custom_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Substitua 'home' pela URL de redirecionamento desejada
+                return redirect('agro:nova_praga')  
             else:
                 messages.error(request, "Nome de usuário ou senha inválidos.")
         else:

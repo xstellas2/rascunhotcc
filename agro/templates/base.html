@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt">
 
-    {% load static %}
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,19 +46,42 @@
             </a>          
         </div>
         <div class="d-flex align-items-center">
-            <a class="nav-item link-nav" href="{% url 'agro:index' %}">Início</a>
+            <a class="nav-item link-nav" href="{% url 'agro:index' %}" style="color: white;">Início</a>
+
 
             <div class="header-sign-in">
                 <a
-                  href="{% url 'agro:custom_login' %}}"
+                  href="{% url 'agro:custom_login' %}"
                   class="br-sign-in small"
                   type="button"
                   data-trigger="login">
                     <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="d-sm-inline">Entrar</span>
+                    <span class="d-sm-inline">Login</span>
                 </a>
             </div>                    
         </div>
+        <style> 
+            .header-sign-in {
+                display: flex;
+                align-items: center; 
+                margin-left: 10px; 
+            }
+            
+            .header-sign-in a {
+                color: #fff;
+                text-decoration: none; 
+                font-size: 1rem; 
+                margin-left: 10px; 
+                padding: 5px 10px; 
+            }
+            
+            .header-sign-in a:hover {
+                color: #ccc;
+            }
+        </style>
+            
+            
+        
     </header>
 
     {% block main %}

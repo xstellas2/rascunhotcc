@@ -19,13 +19,11 @@ urlpatterns = [
     path('formulario/', views.formulario, name='formulario'),
     path('deletar_sugestao/<int:pk>/', deletar_sugestao, name='agro-delete'),
     path('editar_sugestoes/<int:pk>/', editar_sugestao, name='editar_sugestao'),  
-
-    path('agro/list/', views.AgroListView.as_view(), name='agro-list'),
-    path('agro/detail/<int:pk>/', views.AgroDetailView.as_view(), name='agro-detail'),
-    path('agro/update/<int:pk>/', views.AgroUpdateView.as_view(), name='agro-update'),
-    path('agro/delete/<int:pk>/', views.AgroDeleteView.as_view(), name='agro-delete'),
-    path('agro/create/', views.AgroCreateView.as_view(), name='agro-create'),
     path('login/', custom_login, name='custom_login'),
+    path('nova_praga/', views.nova_praga, name='nova_praga'),
+    path('agro_list/', views.agro_list, name='agro_list'),
+    path('blaba/', views.agro_list, name='agro_list'),
+
 ]
 
 

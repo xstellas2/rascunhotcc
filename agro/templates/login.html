@@ -3,24 +3,16 @@
 {% load i18n %}
 {% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
-{% endblock %}
+{% block title %}Login{% endblock %}
 
-{% block head_title %}{% translate "Sign In" %}{% endblock %}
-
-{% block content %}
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 <div class="main-content pl-sm-3 mt-4" id="main-content">
-  <div class="row justify-content-between align-items-center">
-    <div class="col-md-7 col-sm-6 ">
-      <div class="div-login-background">
-        <img class="img-login-lady" src="{% static 'images/login.png' %}" alt="Imagem de Login" />
-      </div>
-    </div>
+  <div class="row justify-content-center align-items-center">
     <div class="div-system-access col-md-5 col-lg-5 col-xl-5 col-12">
       <h1 class="text-h1">{% translate "Acesso ao Sistema" %}</h1>
-      <form class="login" method="POST" action="{% url 'custom_login' %}">
+      <form class="login" method="POST" action=".">
         {% csrf_token %}
         <div class="br-input">
           <label for="id_login">{% translate "Username:" %}</label>
@@ -28,14 +20,16 @@
             <div class="input-icon">
               <i class="fas fa-user" aria-hidden="true"></i>
             </div>
-            {{ form.login }}
+            {{ form.username }}
             <p>{% translate "Digite seu nome de usuário." %}</p>
           </div>
         </div>
         <div class="br-input input-button">
           <label for="id_password">{% translate "Senha:" %}</label>
           <div class="input-group">
-            <div class="input-icon"></div>
+            <div class="input-icon">
+              <i class="fas fa-lock" aria-hidden="true"></i>
+            </div>
             {{ form.password }}
             <button class="br-button" type="button" aria-label="Mostrar senha">
               <i class="fas fa-eye" aria-hidden="true"></i>
@@ -43,23 +37,142 @@
             <p>{% translate "Digite sua senha de segurança." %}</p>
           </div>
         </div>
-        <div class="forgot-password">
-          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% translate "Esqueceu a senha?" %}</a>
-        </div>
-        <div class="mb-1">
-          <div class="br-checkbox">
-            <input id="keep_connected_checkbox" name="keep_connected_checkbox" type="checkbox" aria-label="Manter-me conectado" />
-            <label for="keep_connected_checkbox">{% translate "Manter-me conectado" %}</label>
-          </div>
-        </div>
         <button class="primaryAction br-button primary block" type="submit">{% translate "Sign In" %}</button>
       </form>
       <span class="br-divider my-3"></span>
-      <p class="first-access-href">
-        <a style="text-decoration-line: none" href="{% url 'account_signup' %}">{% translate "Primeiro Acesso?" %}</a>
-      </p>
+      
     </div>
   </div>
 </div>
+<style>
+      .div-system-access {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .text-h1 {
+        font-size: 1.75rem;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Inputs */
+    .br-input label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #3C5E4B;
+    }
+
+    .input-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #f8f8f8;
+        font-size: 1rem;
+    }
+
+    .input-group p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 5px;
+    }
+
+    /* Estilo dos ícones */
+    .input-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        font-size: 1.2rem;
+    }
+
+    /* Botão Mostrar Senha */
+    .input-button .br-button {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    .input-button .br-button:hover {
+        color: #3C5E4B; /* Cor de destaque ao passar o mouse */
+    }
+
+    /* Botão de envio */
+    .primaryAction {
+        width: 100%;
+        padding: 14px;
+        background-color: #3C5E4B;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .primaryAction:hover {
+        background-color: #2d4638;
+    }
+
+    /* Divider */
+    .br-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+    }
+
+    /* Link Primeiro Acesso */
+    .first-access-href a {
+        color: #3C5E4B;
+        font-size: 0.9rem;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+
+    .first-access-href a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .div-system-access {
+            padding: 20px;
+        }
+
+        .text-h1 {
+            font-size: 1.5rem;
+        }
+
+        .primaryAction {
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+    }
+
+
+
+  </style>
 
 {% endblock %}

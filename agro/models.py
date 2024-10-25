@@ -1,5 +1,5 @@
 from django.db import models
-from django.db import models
+
 from django.utils.translation import gettext_lazy as _
 
 
@@ -32,15 +32,10 @@ class Praga(models.Model):
         blank=True  # permite que o campo seja opcional
     )
     
-    valor = models.DecimalField(
-        verbose_name=_("Valor"),
-        decimal_places=2,
-        max_digits=6
-    )
 
     class Meta:
         verbose_name = _("Praga")
         verbose_name_plural = _("Pragas")
 
     def __str__(self):
-        return f"{self.pk} | {self.nome}  | {self.valor}"
+        return f"{self.pk} | {self.nome} "
