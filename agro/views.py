@@ -28,7 +28,7 @@ def agro_editar(request, pk):
             return redirect('agro:agro_detalhe', pk=praga.pk)  # Redireciona para o detalhe da praga
     else:
         form = AgroForm(instance=praga)  # Cria o formulário com os dados existentes da praga
-    return render(request, 'agro/agro_editar.html', {'form': form, 'praga': praga})
+    return render(request, 'agro:agro_editar.html', {'form': form, 'praga': praga})
 def agro_detalhe(request, praga_id):
     praga = get_object_or_404(Praga, id=praga_id)
     return render(request, 'agro:agro_detalhe.html', {'praga': praga})

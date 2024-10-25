@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block main %}
     <h1>{{ praga.nome }}</h1>
     <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" style="max-width: 300px; border-radius: 8px;">
     
     <p><strong>Descrição:</strong> {{ praga.descricao }}</p>
     
-    <a href="{% url 'praga_list' %}">Voltar para a lista</a>
+    <a href="{% url 'agro:praga_list' %}">Voltar para a lista</a>
 {% endblock %}
