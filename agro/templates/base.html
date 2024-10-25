@@ -36,6 +36,7 @@
                     <li><a class="dropdown-item" href="{% url 'agro:sobre_nos' %}">Quem somos?</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:formulario' %}">Fale conosco</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
+                    <li><a class="dropdown-item" href="{% url 'agro:agro_list' %}">Informações sobre pragas</a></li>
                 </ul>
             </div>
             <a class="link-nav" href="{% url 'agro:index' %}">
@@ -57,6 +58,16 @@
                   data-trigger="login">
                     <i class="fas fa-user" aria-hidden="true"></i>
                     <span class="d-sm-inline">Login</span>
+                    
+                </a>
+                <a
+                  href="{% url 'agro:nova_praga' %}"
+                  class="br-sign-in small"
+                  type="button"
+                  data-trigger="login">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span class="d-sm-inline">Cadastrar</span>
+                    
                 </a>
             </div>                    
         </div>

@@ -23,6 +23,9 @@ urlpatterns = [
     path('nova_praga/', views.nova_praga, name='nova_praga'),
     path('agro_list/', views.agro_list, name='agro_list'),
     path('blaba/', views.agro_list, name='agro_list'),
+    path('pragas/<int:praga_id>/', views.agro_detalhe, name='agro_detalhe'),
+    path('agro_editar/<int:id>/', views.agro_editar, name='agro_editar'),
+    path('agro_deletar/<int:pk>/', views.agro_deletar, name='agro_deletar'),
 
 ]
 

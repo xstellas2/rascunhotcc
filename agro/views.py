@@ -1,23 +1,37 @@
 from django.shortcuts import render
-from django.db.models import Q
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from .models import Sugestao
 from .forms import SugestaoForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages import views
-from django.urls import reverse_lazy
-from django.views import generic
 from .forms import AgroForm
-from .models import Agro
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
-
 from django.contrib.auth.decorators import login_required
 from .models import Praga
+
+def agro_deletar(request, pk):
+    praga = get_object_or_404(Praga, pk=pk)  # Busca a praga pelo ID ou retorna um 404
+    praga.delete()  # Deleta a praga
+    
+    messages.success(request, 'Praga deletada com sucesso!')  # Exibe uma mensagem de sucesso
+    return redirect('agro:agro_list')  
+
+def agro_editar(request, pk):
+    praga = get_object_or_404(Praga, pk=pk)  # Busca a praga pelo ID ou retorna um 404
+    if request.method == 'POST':
+        form = AgroForm(request.POST, request.FILES, instance=praga)  # Inclui request.FILES para lidar com imagens
+        if form.is_valid():
+            form.save()  # Salva as mudanças no objeto Praga
+            return redirect('agro:agro_detalhe', pk=praga.pk)  # Redireciona para o detalhe da praga
+    else:
+        form = AgroForm(instance=praga)  # Cria o formulário com os dados existentes da praga
+    return render(request, 'agro/agro_editar.html', {'form': form, 'praga': praga})
+def agro_detalhe(request, praga_id):
+    praga = get_object_or_404(Praga, id=praga_id)
+    return render(request, 'agro:agro_detalhe.html', {'praga': praga})
 
 # View para cadastro de nova praga
 @login_required
