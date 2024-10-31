@@ -1,10 +1,77 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% block main %}
-    <h1>{{ praga.nome }}</h1>
-    <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" style="max-width: 300px; border-radius: 8px;">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<div class="praga-detalhe">
+    <h1 class="praga-nome">{{ praga.nome }}</h1>
+    <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-imagem">
     
-    <p><strong>Descrição:</strong> {{ praga.descricao }}</p>
+    <p class="praga-descricao"><strong>Descrição:</strong> {{ praga.descricao }}</p>
     
-    <a href="{% url 'agro:praga_list' %}">Voltar para a lista</a>
+    <a href="{% url 'agro:agro_list' %}" class="voltar-lista">Voltar para a lista</a>
+</div>
+
+<style>
+        /* Estilos gerais */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #335d50;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Estilização para o container principal da página de detalhe da praga */
+    .praga-detalhe {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Estilo para o nome da praga */
+    .praga-nome {
+        font-size: 32px;
+        font-weight: bold;
+        color: #335d50;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para a imagem da praga */
+    .praga-imagem {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para a descrição */
+    .praga-descricao {
+        font-size: 18px;
+        line-height: 1.5;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para o link de voltar */
+    .voltar-lista {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #335d50;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .voltar-lista:hover {
+        background-color: #2a4a42;
+    }
+
+</style>
 {% endblock %}

@@ -1,86 +1,86 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 <div class="content-wrapper">
-    <h1 class="section-title">Pragas</h1> <!-- Título acima das imagens -->
+    <h1 class="section-title">Pragas</h1>
 
-        <div class="praga-grid">
-            {% for praga in pragas %}
+    <div class="praga-grid">
+        {% for praga in pragas %}
             <div class="praga-item">
-        <a href="{% url 'agro:agro_detalhe' praga.id %}">
-            <div class="praga-image-wrapper">
-                <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-image">
-                <div class="praga-hover-info">
-                    <p>{{ praga.descricao|slice:":100" }}...</p>
-                </div>
+                <a href="{% url 'agro:agro_detalhe' praga.id %}">
+                    <div class="praga-image-wrapper">
+                        <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-image">
+                        <div class="praga-hover-info">
+                            <p>{{ praga.descricao|slice:":100" }}...</p>
+                        </div>
+                    </div>
+                    <h2 class="praga-title">{{ praga.nome }}</h2>
+                </a>
+
+                {% if user.is_authenticated %}
+                    <div class="edit-delete-wrapper">
+                        <a href="{% url 'agro:agro_editar' praga.id %}" class="btn-edit">Editar</a>
+                        <form method="POST" action="{% url 'agro:agro_deletar' praga.pk %}" style="display:inline-block;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja deletar esta praga?');">Deletar</button>
+                        </form>
+                    </div>
+                {% endif %}
             </div>
-            <h2 class="praga-title">{{ praga.nome }}</h2>
-        </a>
-        
-        <!-- Botões de editar e deletar lado a lado e centralizados -->
-        <div class="edit-delete-wrapper">
-            <a href="{% url 'agro:agro_editar' praga.id %}" class="btn-edit">Editar</a>
-            <form method="POST" action="{% url 'agro:agro_deletar' praga.pk %}" style="display:inline-block;">
-                {% csrf_token %}
-                <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja deletar esta praga?');">Deletar</button>
-            </form>
-        </div>
-    </div>
-       
         {% empty %}
-        <p>Nenhuma praga cadastrada.</p>
+            <p>Nenhuma praga cadastrada.</p>
         {% endfor %}
     </div>
 </div>
 
 <style>
-
     .section-title {
-        text-align: center;  /* Centralizar o texto */
-        color: #335d50;      /* Cor verde */
-        font-size: 36px;     /* Aumentar o tamanho da fonte */
-        font-weight: bold;   /* Negrito */
-        margin-top: 20px;    /* Espaçamento superior */
+        text-align: center;
+        color: #2d3e3f;
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 20px;
     }
-    
-    
 
-    /* Estilo já existente */
     .content-wrapper {
         flex-grow: 1;
-        padding-bottom: 60px;
-        background-color: #fff;
+        padding: 20px;
+        background-color: #f5f5f5;
     }
 
     .praga-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
         padding: 0 20px;
     }
 
     .praga-item {
-        background-color: #1a1a1a;
-        border-radius: 10px;
+        background-color: #ffffff;
+        border-radius: 15px;
         overflow: hidden;
         position: relative;
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
-        border: 1px solid #333;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
     }
 
     .praga-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .praga-image-wrapper {
         position: relative;
         width: 100%;
-        height: 150px;
+        height: 180px;
         overflow: hidden;
+        border-radius: 15px 15px 0 0;
     }
 
     .praga-image {
@@ -99,12 +99,13 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.6);
         color: #fff;
         padding: 10px;
         opacity: 0;
         transition: opacity 0.3s ease;
         font-size: 14px;
+        border-radius: 0 0 15px 15px;
     }
 
     .praga-image-wrapper:hover .praga-hover-info {
@@ -114,139 +115,42 @@
     .praga-title {
         font-size: 18px;
         font-weight: bold;
-        color: #ffffff;
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #335d50;
+        color: #333;
+        margin: 15px 0;
         text-align: center;
-        border-radius: 0 0 10px 10px;
     }
 
-    .content-wrapper {
-        padding-bottom: 80px;
-    }
-
-
-
-
-
-    dit-delete-wrapper {
+    .edit-delete-wrapper {
         display: flex;
-        justify-content: center; /* Centraliza os botões horizontalmente */
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        gap: 10px; /* Espaçamento entre os botões */
-        padding: 5px;
-        position: absolute;
-        bottom: 0; /* Para manter os botões no fundo */
-        width: 100%;
-        background-color: #1a1a1a;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
     }
-    
-    .praga-item:hover .edit-delete-wrapper {
-        opacity: 1;
-    }
-    
-    /* Estilo do botão de editar */
+
     .btn-edit, .btn-delete {
-        padding: 5px 10px; /* Tamanho dos botões menor */
-        font-size: 12px; /* Tamanho da fonte menor */
+        padding: 8px 16px;
+        font-size: 14px;
         font-weight: bold;
         border-radius: 5px;
         transition: background-color 0.3s ease;
     }
-    
+
     .btn-edit {
-        background-color: #335d50;
+        background-color: #3C5E4B;;
         color: white;
     }
-    
+
     .btn-edit:hover {
-        background-color: #4b7d6c;
+        background-color: #388e3c;
     }
-    
+
     .btn-delete {
-        background-color: #ff4444;
+        background-color: #e53935;
         color: #fff;
     }
-    
+
     .btn-delete:hover {
-        background-color: #e60000;
-    }
-    
-    /* Ajustes no grid com um pequeno espaço entre os cards */
-    .praga-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr); /* Máximo de 6 pragas por fileira */
-        gap: 10px; /* Pequeno espaço entre os cards */
-        padding: 0;
-    }
-    
-    .praga-item {
-        background-color: #1a1a1a;
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        border: 1px solid #333;
-        height: 250px; /* Define uma altura fixa para os cards */
-    }
-    
-    .praga-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    
-    .praga-image-wrapper {
-        position: relative;
-        width: 100%;
-        height: 150px;
-        overflow: hidden;
-    }
-    
-    .praga-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-    
-    .praga-image-wrapper:hover .praga-image {
-        transform: scale(1.1);
-    }
-    
-    .praga-hover-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 10px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        font-size: 14px;
-    }
-    
-    .praga-image-wrapper:hover .praga-hover-info {
-        opacity: 1;
-    }
-    
-    .praga-title {
-        font-size: 16px;
-        font-weight: bold;
-        color: #ffffff;
-        margin: 0;
-        padding: 8px;
-        background-color: #335d50;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        min-height: 50px; /* Define uma altura mínima para o título */
-        white-space: nowrap; /* Impede a quebra de linha */
-        overflow: hidden;
-        text-overflow: ellipsis; /* Exibe reticências se o texto for muito longo */
+        background-color: #b71c1c;
     }
 </style>
 

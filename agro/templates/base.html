@@ -46,19 +46,28 @@
         <div class="d-flex align-items-center">
             <a class="nav-item link-nav" href="{% url 'agro:index' %}" style="color: white;">Início</a>
 
-
+            {% if user.is_authenticated %}
             <div class="header-sign-in">
                 <a
-                  href="{% url 'agro:custom_login' %}"
+                  href="{% url 'agro:sair' %}"
                   class="br-sign-in small"
                   type="button"
                   data-trigger="login">
                     <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="d-sm-inline">Login</span>
+                    <span class="d-sm-inline">sair</span>
                     
                 </a>
                 
-            </div>                    
+            </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <div class="header-sign-in">
+                <a href="{% url 'agro:nova_praga' %}" class="br-sign-in small" type="button" data-trigger="login"> Cadastrar</i>
+                 
+                </a>
+                
+            </div>
+            {% endif %}                     
         </div>
         <style> 
             .header-sign-in {
