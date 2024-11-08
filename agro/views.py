@@ -19,21 +19,20 @@ def agro_deletar(request, pk):
     return redirect('agro:agro_list')  
 
 def agro_editar(request, pk):
-    praga = get_object_or_404(Praga, pk=pk)  # Busca a praga pelo ID ou retorna um 404
+    praga = get_object_or_404(Praga, pk=pk)  
     if request.method == 'POST':
         form = AgroForm(request.POST, request.FILES, instance=praga)  # Inclui request.FILES para lidar com imagens
         if form.is_valid():
-            form.save()  # Salva as mudanças no objeto Praga
-            return redirect('agro:agro_detalhe', praga_id=29)   # Redireciona para o detalhe da praga
+            form.save()  
+            return redirect('agro:agro_detalhe', praga_id=pk)   
     else:
-        form = AgroForm(instance=praga)  # Cria o formulário com os dados existentes da praga
+        form = AgroForm(instance=praga)  
     return render(request, 'agro/agro_editar.html', {'form': form, 'praga': praga})
 
 def agro_detalhe(request, praga_id):
     praga = get_object_or_404(Praga, id=praga_id)
     return render(request, 'agro/agro_detalhe.html', {'praga': praga})
 
-# View para cadastro de nova praga
 @login_required
 def nova_praga(request):
     if request.method == 'POST':
