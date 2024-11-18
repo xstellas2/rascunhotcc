@@ -25,6 +25,8 @@ urlpatterns = [
     path('pragas/<int:praga_id>/', views.agro_detalhe, name='agro_detalhe'),
     path('agro_editar/<int:pk>/', views.agro_editar, name='agro_editar'),
     path('agro_deletar/<int:pk>/', views.agro_deletar, name='agro_deletar'),
+    path('like/<int:praga_id>/', views.like_praga, name='like_praga'),
+    path('dislike/<int:praga_id>/', views.dislike_praga, name='dislike_praga'),
     path('sair/', views.sair, name="sair")
 ]
 

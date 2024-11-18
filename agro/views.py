@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
+
 from .models import Sugestao
 from .forms import SugestaoForm
 from .forms import AgroForm
@@ -10,7 +12,22 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .models import Praga
+
+def like_praga(request, praga_id):
+    if request.method == 'POST':
+        praga = get_object_or_404(Praga, id=praga_id)
+        praga.likes += 1
+        praga.save()
+        return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
+
+def dislike_praga(request, praga_id):
+    if request.method == 'POST':
+        praga = get_object_or_404(Praga, id=praga_id)
+        praga.dislikes += 1
+        praga.save()
+        return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
 
 def agro_deletar(request, pk):
     praga = get_object_or_404(Praga, pk=pk)  # Busca a praga pelo ID ou retorna um 404
@@ -48,8 +65,12 @@ def nova_praga(request):
 
 # View para listar as pragas cadastradas
 def agro_list(request):
-    pragas = Praga.objects.all()  # Lista todas as pragas
-    return render(request, 'agro/agro_list.html', {'pragas': pragas})
+    pragas = Praga.objects.all()  # Consulta os dados do modelo
+    paginator = Paginator(pragas, 8)  # 9 itens por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'agro/agro_list.html', {'page_obj': page_obj})
 
 def custom_login(request):
     if request.method == 'POST':
@@ -77,9 +98,12 @@ def salvar_sugestao(request):
         form = SugestaoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('agro:listar_sugestoes')  # Redireciona para a lista de sugestões após salvar
+            # Mensagem de sucesso
+            messages.success(request, 'Sua sugestão foi enviada com sucesso!')
+            return redirect('agro:index')  # Ou para qualquer outra página desejada
     else:
         form = SugestaoForm()
+
     return render(request, 'formulario.html', {'form': form})
 
 
@@ -107,7 +131,8 @@ def listar_sugestoes(request):
     return render(request, 'listagem_sugestoes.html', {'contato': contato, 'messages': messages.get_messages(request)})
 
 def index(request):
-    return render(request, 'index.html')
+    pragas = Praga.objects.all()
+    return render(request, 'index.html', {'pragas': pragas})
 
 def lagartas(request):
     return render(request, 'lagartas.html')

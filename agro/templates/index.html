@@ -1,80 +1,19 @@
+{% extends 'base.html' %}
 {% load static %}
 
+{% block title %} PragaZero{% endblock %}
+
+{% block main %}
 <!DOCTYPE html>
 <html lang="pt">
 
 <head>
-   
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="{% static 'img/image1.png' %}" type="image/x-icon">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Poppins&family=Pridi&family=Raleway:wght@400;600&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+
+
     <title>PragaZero</title>
 </head>
 
 <body>
-    <header class="navbar navbar-expand-lg">
-        <div class="d-flex justify-content-between align-items-center w-100">
-            <div class="dropend">
-                <button type="button" class="btn dropdown mx-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{% static 'img/image.png' %}" alt="Menu">
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="{% url 'agro:index' %}">Início</a></li>
-                    <li><a class="dropdown-item" href="{% url 'agro:sobre_nos' %}">Quem somos?</a></li>
-                    <li><a class="dropdown-item" href="{% url 'agro:formulario' %}">Fale conosco</a></li>
-                    <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
-                    <li><a class="dropdown-item" href="{% url 'agro:agro_list' %}">Informações sobre pragas</a></li>
-                </ul>
-            </div>
-            <a class="link-nav header-logo" href="{% url 'agro:index' %}">
-                <img src="{% static 'img/image1.png' %}" alt="Logotipo">
-            </a>
-            <a class="link-nav header-name" href="{% url 'agro:sobre_nos' %}">
-                <h2 class="pragazero">PragaZero</h2>
-            </a>
-            
-            <div class="header-sign-in">
-                <a
-                  href="{% url 'agro:custom_login' %}"
-                  class="br-sign-in small"
-                  type="button"
-                  data-trigger="login">
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="d-sm-inline">Login</span>
-                </a>
-            </div> 
-        </div>
-        <style> 
-            .header-sign-in {
-                display: flex;
-                align-items: center; 
-                margin-left: 10px; 
-            }
-            
-            .header-sign-in a {
-                color: #fff;
-                text-decoration: none; 
-                font-size: 1rem; 
-                margin-left: 10px; 
-                padding: 5px 10px; 
-            }
-            
-            .header-sign-in a:hover {
-                color: #ccc;
-            }
-        </style>
-    </header>
     <main>
         <section>
             <div class="d-flex justify-content-around align-items-center mb-5">
@@ -91,115 +30,235 @@
         </section>
 
         <div class="carrosel">
-            <h3 class="tx-carrosel h3-carrosel">Aqui temos uma lista com alguns tópicos importantes sobre as pragas e
+            <h3 style="padding-bottom: 20px;" class="tx-carrosel h3-carrosel">Aqui temos uma lista com alguns tópicos
+                importantes sobre as pragas e
                 como evitá-las:</h3>
 
-            <div id="carouselExample" class="carousel slide allcarrosel" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="d-flex itens-carrosel">
-                            <a href="{% url 'agro:lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
-                                <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
-                                    plantações? Confira já!</p>
-                            </a>
-                            <a href="{% url 'agro:agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
-                                    plantações!</p>
-                            </a>
-                            <a href="{% url 'agro:gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
-                                <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
-                                    plantações e como evitá-los!</p>
+
+            <!-- Swiper Container -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for praga in pragas %}
+                    <div class="swiper-slide">
+                        <div class="praga-item">
+                            <a href="{% url 'agro:agro_detalhe' praga.id %}">
+                                <div class="praga-image-wrapper">
+                                    <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-image">
+                                    <div class="praga-hover-info">
+                                    </div>
+                                </div>
+                                <h2 class="praga-title">{{ praga.nome|slice:":50" }}</h2>
                             </a>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="d-flex itens-carrosel">
-                            <a href="{% url 'agro:agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
-                                    plantações!</p>
-                            </a>
-                            <a href="{% url 'agro:gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
-                                <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
-                                    plantações e como evitá-los!</p>
-                            </a>
-                            <a href="{% url 'agro:lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
-                                <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
-                                    plantações? Confira já!</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="d-flex itens-carrosel">
-                            <a href="{% url 'agro:gafanhotos' %}" class="card-carrosel">
-                                <img src="{% static 'img/image6.png' %}" alt="Gafanhotos">
-                                <p class="tx-carrosel">Saiba mais sobre os danos causados pelos gafanhotos nas
-                                    plantações e como evitá-los!</p>
-                            </a>
-                            <a href="{% url 'agro:lagartas' %}" class="card-carrosel">
-                                <img src="{% static 'img/image4.png' %}" alt="Lagartas">
-                                <p class="tx-carrosel">Você conhece os impactos que as lagartas podem causar nas
-                                    plantações? Confira já!</p>
-                            </a>
-                            <a href="{% url 'agro:agrotoxico' %}" class="card-carrosel">
-                                <img src="{% static 'img/image5.png' %}" alt="Agrotóxicos">
-                                <p class="tx-carrosel">Conheça as vantagens e desvantagens do uso de agrotóxicos nas
-                                    plantações!</p>
-                            </a>
-                        </div>
-                    </div>
+                    {% empty %}
+                    <p>Nenhuma praga cadastrada.</p>
+                    {% endfor %}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+                <!-- Add Pagination -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <!-- Paginação -->
+                <div class="swiper-pagination"></div>
             </div>
+
         </div>
         <section class="info-section d-flex justify-content-center align-items-center mb-5">
             <div class="d-flex justify-content-around align-items-center w-100">
                 <div class="info-image" style="margin-right: 15px;">
                     <img src="{% static 'img/agricultura.jpg' %}" alt="Informações sobre a plantação">
                 </div>
-        
+
                 <div style="margin-left: 15px;" class="text">
                     <h2 style="text-align: start; color: #d0d3d2;">Proteja sua Colheita, Preserve seu Futuro!</h2>
                     <p> No PragaZero, estamos aqui para ajudar você a manter sua lavoura saudável e produtiva!</p>
-        
-                    <p>🌾 <strong>Cultive com Confiança:</strong> Nossa missão é empoderar os pequenos agricultores com informações acessíveis e confiáveis</p>
-                    
-                    <p>🔍 <strong>Explore o nosso site: </strong> Descubra tudo o que você precisa para uma agricultura familiar sustentável e livre de pragas. </p>
-                    
+
+                    <p>🌾 <strong>Cultive com Confiança:</strong> Nossa missão é empoderar os pequenos agricultores com
+                        informações acessíveis e confiáveis</p>
+
+                    <p>🔍 <strong>Explore o nosso site: </strong> Descubra tudo o que você precisa para uma agricultura
+                        familiar sustentável e livre de pragas. </p>
+
                     <a href="{% url 'agro:agro_list' %}" class="info-button">Clique Aqui</a>
                 </div>
             </div>
         </section>
-        
-        
-        
+
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                loop: true, // Permite navegação infinita
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                slidesPerView: 3, // Padrão: 3 slides visíveis
+                spaceBetween: 3, // Espaço entre os slides
+                breakpoints: {
+                    1024: { // Para telas maiores ou iguais a 1024px
+                        slidesPerView: 3,
+                        spaceBetween: 3,
+                    },
+                    768: { // Para telas maiores ou iguais a 768px
+                        slidesPerView: 2,
+                        spaceBetween: 3,
+                    },
+                    480: { // Para telas maiores ou iguais a 480px
+                        slidesPerView: 1,
+                        spaceBetween: 3,
+                    },
+                },
+            });
+        </script>
+
+
+
+
+
+
         <style>
+            /* Ajuste para a navegação do Swiper */
+            .swiper-button-prev,
+            .swiper-button-next {
+                position: absolute;
+                top: 50%;
+                /* Centraliza verticalmente */
+                transform: translateY(-50%);
+                /* Ajusta para que fique exatamente centralizado */
+                z-index: 10;
+                /* Garante que fiquem acima das imagens */
+                color: #3c5e4b;
+                /* Cor dos botões */
+                font-size: 20px;
+                /* Tamanho do botão */
+            }
+
+            /* Ajuste a posição dos botões */
+            .swiper-button-prev {
+                left: 5%;
+                /* Alinha à esquerda, ajuste conforme necessário */
+            }
+
+            .swiper-button-next {
+                right: 5%;
+                /* Alinha à direita, ajuste conforme necessário */
+            }
+
+            /* Estilo para melhorar o hover */
+            .swiper-button-prev:hover,
+            .swiper-button-next:hover {
+                color: #2a4a42;
+                /* Cor ao passar o mouse */
+            }
+
+            .swiper-pagination {
+                position: absolute !important;
+                /* Força o estilo de posição */
+                bottom: -20px;
+                /* Ajuste este valor para mover mais para baixo */
+                left: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 10;
+                /* Garante que fique acima de outros elementos */
+            }
+
+            .swiper-wrapper {
+                margin: 0;
+            }
+
+
+
+            /* Responsivo: Ajuste para telas menores */
+            @media (max-width: 768px) {
+
+                .swiper-button-prev,
+                .swiper-button-next {
+                    font-size: 16px;
+                    /* Reduz o tamanho dos botões */
+                    left: 5px;
+                    /* Ajuste para telas pequenas */
+                    right: 5px;
+                }
+            }
+
+
+            .swiper-container {
+                position: relative;
+                width: 100%;
+                /* Garante que o carrossel ocupe toda a largura da tela */
+                overflow: hidden;
+                /* Impede que o conteúdo transborde */
+                height: auto;
+                /* Permite ajustar com base no conteúdo */
+                margin: 0 auto;
+                /* Centraliza o carrossel */
+                height: auto;
+                padding-bottom: 50px;
+            }
+
+
+            .swiper-slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+                /* Impede que o slide encolha */
+                width: auto;
+                /* Ajusta o tamanho automaticamente */
+            }
+
+            .praga-item {
+                width: 100%;
+                /* Faz com que os itens do carrossel ocupem 100% do espaço do slide */
+                max-width: 300px;
+                /* Limita a largura máxima */
+                height: 100%;
+                /* Faz com que o item ocupe toda a altura disponível */
+                max-height: 300px;
+                /* Limita a altura máxima */
+                background-color: #ffffff;
+                border-radius: 15px;
+                overflow: hidden;
+                text-align: center;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+            }
+
+            .praga-image-wrapper {
+                width: 100%;
+                height: 200px;
+            }
+
+            .praga-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .praga-title {
+                color: #333333;
+                font-size: 25px;
+                padding: 15px;
+                margin: 0;
+            }
+
             .info-section {
                 text-align: start;
                 margin-bottom: 100px;
             }
-            
+
             .info-container {
                 max-width: 1000px;
                 gap: 20px;
                 display: flex;
                 align-items: center;
             }
-            
+
             .info-image img {
                 max-width: 100%;
                 border-radius: 10px;
@@ -207,7 +266,7 @@
                 height: auto;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
-            
+
             .info-content h1 {
                 font-size: 30px;
                 font-weight: 700;
@@ -215,7 +274,7 @@
                 margin-bottom: 20px;
                 text-align: start;
             }
-            
+
             .info-content p {
                 font-size: 18px;
                 color: #d0d3d2;
@@ -223,11 +282,12 @@
                 line-height: 1.6;
                 text-align: start;
             }
-        
+
             .info-content strong {
-                color: #a0cfa0; /* Destaque para palavras importantes */
+                color: #a0cfa0;
+                /* Destaque para palavras importantes */
             }
-            
+
             .info-button {
                 display: inline-block;
                 padding: 12px 24px;
@@ -238,15 +298,15 @@
                 border-radius: 5px;
                 transition: background-color 0.3s ease;
             }
-            
+
             .info-button:hover {
                 background-color: #507a55;
             }
         </style>
-        
-        
-        
-        
+
+
+
+
         <section class="d-flex justify-content-center align-items-center mb-5">
             <div class="d-flex justify-content-around align-items-center w-100">
                 <div style="margin-right: 15px;">
@@ -254,9 +314,9 @@
                 </div>
                 <div style="margin-left: 15px;" class="text">
                     <h1 style="text-align: start;">Dicas de cuidados com as plantações</h1>
-                       
-                    <p style="text-align: start; margin-bottom: 100px;" >
-                        Pragas podem se tornar um grande problema para a produção agrícola. 
+
+                    <p style="text-align: start; margin-bottom: 100px;">
+                        Pragas podem se tornar um grande problema para a produção agrícola.
                         Conheça nossas dicas e mantenha suas plantações sempre seguras.</p>
                 </div>
             </div>
@@ -269,42 +329,21 @@
                 </div>
                 <div style="margin-left: 15px;" class="text">
                     <h1 style="text-align: start;">Para que servem os agrotóxicos?</h1>
-                    <p style="text-align: start; margin-bottom: 100px;">Os agrotóxicos são compostos químicos, físicos ou biológicos amplamente empregados no setor agropecuário, especialmente em monoculturas. 
-                        A Anvisa classifica os agrotóxicos em quatro classes de danos à saúde humana: pouco tóxicos, medianamente tóxicos, altamente tóxicos e extremamente tóxicos. Nos rótulos desses produtos, além das cores que representam cada classe, são indicadas também as doses de letalidade de cada uma.</p>
+                    <p style="text-align: start; margin-bottom: 100px;">Os agrotóxicos são compostos químicos, físicos
+                        ou biológicos amplamente empregados no setor agropecuário, especialmente em monoculturas.
+                        A Anvisa classifica os agrotóxicos em quatro classes de danos à saúde humana: pouco tóxicos,
+                        medianamente tóxicos, altamente tóxicos e extremamente tóxicos. Nos rótulos desses produtos,
+                        além das cores que representam cada classe, são indicadas também as doses de letalidade de cada
+                        uma.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="d-flex justify-content-around">
-                <div class="footer-logo text-center">
-                    <h1>PragaZero</h1>
-                    <div class="social-media">
-                        <a href="#"><img src="{% static 'img/tiktok.png' %}" alt="tiktok"></a>
-                        <a href="#"><img src="{% static 'img/twitter.png' %}" alt="twitter"></a>
-                        <a href="#"><img src="{% static 'img/facebook.png' %}" alt="facebook"></a>
-                        <a href="#"><img src="{% static 'img/instagram.png' %}" alt="instagram"></a>
-                    </div>
-                </div>
-                <div class="footer-links d-flex">
-                    <div class="footer-link-group">
-                        <h2>Sobre nós</h2>
-                        <a href="{% url 'agro:sobre_nos' %}">Quem somos?</a>
-                    </div>
-                    <div class="footer-link-group">
-                        <h2>Sugestões?</h2>
-                        <a href="{% url 'agro:formulario' %}">Clique aqui</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <p>© PragaZero 2024. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-    
+
+
+    {% endblock %}
+
 </body>
 
 </html>

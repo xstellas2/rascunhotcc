@@ -8,7 +8,7 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<div class="main-content pl-sm-3 mt-4" id="main-content">
+<div class="main-content" id="main-content">
   <div class="row justify-content-center align-items-center">
     <div class="div-system-access col-md-5 col-lg-5 col-xl-5 col-12">
       <h1 class="text-h1">{% translate "Acesso ao Sistema" %}</h1>
@@ -45,7 +45,16 @@
   </div>
 </div>
 <style>
-      .div-system-access {
+    /* Tornar o main-content ocupar toda a altura da tela */
+    #main-content {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0; /* Remove o padding-left extra */
+    }
+
+    .div-system-access {
         background-color: #ffffff;
         padding: 30px;
         border-radius: 10px;
@@ -170,9 +179,7 @@
             font-size: 0.9rem;
         }
     }
-
-
-
-  </style>
+</style>
 
 {% endblock %}
+

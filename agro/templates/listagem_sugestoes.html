@@ -6,60 +6,55 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<div class="d-flex flex-column" style="min-height: 100vh;">
-    
-
-    <main class="container-fluid flex-grow-1">
-        <section class="row">
+<div >
+    <div class="main">
+        <div class="row">
             <div class="col">
-                <h1 class="my-3">Listagem de sugestões</h1>
+                <h1 class="my-3 text-center">Listagem de Sugestões</h1>
+
                 {% for message in messages %}
                     <div class="alert alert-success">{{ message }}</div>
                 {% endfor %}
 
                 {% if contato %}
-                    {% for cont in contato %}
-                        <div class="card my-3">
-                            <div class="card-body text-secondary">
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <h2 class="text-secondary me-2">{{ cont.nome }}</h2>
-                                        <p class="text-secondary">{{ cont.email }}</p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                        {% for cont in contato %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h2 class="h5 text-secondary">{{ cont.nome }}</h2>
+                                            <p class="text-muted mb-1">{{ cont.email }}</p>
+                                            <span class="text-muted">Telefone: {{ cont.telefone }}</span>
+                                        </div>
                                     </div>
-
-                                    <div class="links d-flex align-items-center">
-                                        <a class="br-button circle edit-button"
-                                            href="{% url 'agro:editar_sugestao' cont.pk %}"
-                                            aria-label="editar"
-                                            title="editar">
-                                            Editar sugestão
+                            
+                                    <p class="mt-2 text-secondary">{{ cont.sugestao }}</p>
+                            
+                                    <!-- Adicionando os botões dentro do card, mas de forma a manter a responsividade -->
+                                    <div class="mt-3 d-flex">
+                                        <a class="btn btn-edit" href="{% url 'agro:editar_sugestao' cont.pk %}">
+                                            Editar
                                         </a>
-                                    
-                                        <a class="br-button circle delete-button"
-                                            type="button"
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#exampleModal-{{ cont.pk }}"
-                                            aria-label="excluir"
-                                            title="excluir">
-                                            Excluir sugestão
-                                        </a>
+                                        <button class="btn btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ cont.pk }}">
+                                            Excluir
+                                        </button>
                                     </div>
-                                    
                                 </div>
-                                <span class="text-secondary">Telefone: {{ cont.telefone }}</span>
-                                <p class="text-secondary">{{ cont.sugestao }}</p>
                             </div>
+                            
                             <form action="{% url 'agro:agro-delete' cont.pk %}" method="post">
                                 {% csrf_token %}
                                 <div class="modal fade" id="exampleModal-{{ cont.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação de Exclusão</h1>
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirmação de Exclusão</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Deseja excluir permanentemente {{ cont.localizacao }}?
+                                                Deseja excluir permanentemente "{{ cont.localizacao }}"?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -70,23 +65,98 @@
                                 </div>
                             </form>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 {% else %}
-                    <p class="text-muted">Nenhuma sugestão encontrada.</p>
+                    <p class="text-muted text-center">Nenhuma sugestão encontrada.</p>
                 {% endif %}
             </div>
-        </section>
-    </main>
-
-    <footer class="container-fluid text-white" style="background-color: #4e5d50;">
-        <!-- Conteúdo do footer -->
-    </footer>
+        </div>
+    </div>
 </div>
+
 <style>
-    /* Espaço extra na parte inferior para que o footer não sobreponha o conteúdo */
-    .content-wrapper {
-        padding-bottom: 80px; /* Garante que o conteúdo não fique por baixo do footer */
+    /* Espaço extra para evitar sobreposição */
+
+    .main {
+        max-width: 70%;
+        margin: 30px auto;
+        padding: 50px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        position: relative;
     }
-    
+    main {
+        padding-top: 20px;
+        padding-bottom: 60px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #3C5E4B;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .card-body {
+        font-size: 0.95rem;
+    }
+
+    /* Ajusta as margens e espaçamentos */
+    .btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .btn {
+            margin-bottom: 5px;
+        }
+    }
+    .btn-edit,
+    .btn-delete {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-edit {
+        background-color: #3C5E4B;
+        color: white;
+        margin-right: 5px;
+    }
+
+    .btn-edit:hover {
+        background-color: #388e3c;
+    }
+
+    .btn-delete {
+        background-color: #e53935;
+        color: #fff;
+        margin-left: 5px;
+    }
+
+    .btn-delete:hover {
+        background-color: #b71c1c;
+    }
 </style>
 {% endblock %}

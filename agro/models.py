@@ -19,23 +19,25 @@ class Agro(models.Model):
     def __str__(self):
         return f"{self.localizacao} - {self.valor}"
 
+from ckeditor.fields import RichTextField
 
 class Praga(models.Model):
     nome = models.CharField(max_length=100)
-    descricao = models.TextField(
-        verbose_name=_("Descrição")
-    )
+    descricao = RichTextField(verbose_name="Descrição")  # Campo formatado
     imagem = models.ImageField(
-        verbose_name=_("Imagem"),
-        upload_to='imagens/pragas/',  # pasta onde as imagens serão salvas
+        verbose_name="Imagem",
+        upload_to='imagens/pragas/',
         null=True, 
-        blank=True  # permite que o campo seja opcional
+        blank=True
     )
-    
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    causas = RichTextField(blank=True, null=True)  # Campo formatado
+    tratamento = RichTextField(blank=True, null=True)  # Campo formatado
 
     class Meta:
-        verbose_name = _("Praga")
-        verbose_name_plural = _("Pragas")
+        verbose_name = "Praga"
+        verbose_name_plural = "Pragas"
 
     def __str__(self):
-        return f"{self.pk} | {self.nome} "
+        return f"{self.pk} | {self.nome}"

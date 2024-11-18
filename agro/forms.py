@@ -15,7 +15,8 @@ class SugestaoForm(forms.ModelForm):
             'telefone': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-
+from django import forms
+from .models import Praga
 
 class AgroForm(forms.ModelForm):
     nome = forms.CharField(
@@ -24,25 +25,16 @@ class AgroForm(forms.ModelForm):
             "placeholder": "Nome da praga",
         })
     )
-    descricao = forms.CharField(
-        widget=forms.Textarea(attrs={
-            "class": "form-control",
-            "placeholder": "Descrição da praga",
-            "rows": 4,
-        })
-    )
+    descricao = forms.CharField(widget=forms.HiddenInput())  # Campo para o Quill.js
+    causas = forms.CharField(widget=forms.HiddenInput())  # Campo para o Quill.js
+    tratamento = forms.CharField(widget=forms.HiddenInput())  # Campo para o Quill.js
     imagem = forms.ImageField(
         widget=forms.FileInput(attrs={
             "class": "form-control-file",
         }),
-        required=True 
+        required=True
     )
-    
 
     class Meta:
         model = Praga
-        fields = (
-            "nome",
-            "descricao",
-            "imagem",
-        )
+        fields = ("nome", "descricao", "imagem", "causas", "tratamento")

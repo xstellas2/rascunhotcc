@@ -2,13 +2,19 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-    
+
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.tiny.cloud/1/zdhb8tk5m4wxccexmsbfumal7h6wxn58mwgvm1sye2keyvx2/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/static.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="{% static 'img/image1.png' %}" type="image/x-icon">
@@ -32,65 +38,76 @@
                     <li><a class="dropdown-item" href="{% url 'agro:index' %}">Início</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:sobre_nos' %}">Quem somos?</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:formulario' %}">Fale conosco</a></li>
-                    <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:agro_list' %}">Informações sobre pragas</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
+                    {% endif %}
+                    
                 </ul>
             </div>
+        </div>
+        <div class="d-flex align-items-center">
             <a class="link-nav" href="{% url 'agro:index' %}">
                 <h1><img src="{% static 'img/image1.png' %}" alt="Logotipo"></h1>
             </a>
-            <a class="link-nav" href="{% url 'agro:sobre_nos' %}">
+            <a class="link-nav" href="{% url 'agro:index' %}">
                 <h2 class="pragazero">PragaZero</h2>
-            </a>          
+            </a>
         </div>
-        <div class="d-flex align-items-center">
-            <a class="nav-item link-nav" href="{% url 'agro:index' %}" style="color: white;">Início</a>
 
+        <div class="d-flex align-items-center">
             {% if user.is_authenticated %}
             <div class="header-sign-in">
-                <a
-                  href="{% url 'agro:sair' %}"
-                  class="br-sign-in small"
-                  type="button"
-                  data-trigger="login">
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="d-sm-inline">sair</span>
-                    
+                <a href="{% url 'agro:nova_praga' %}" class="br-sign-in small" type="button" data-trigger="login">
+                    Cadastrar</i>
+
                 </a>
-                
+
             </div>
             {% endif %}
-            {% if user.is_authenticated %}
-            <div class="header-sign-in">
-                <a href="{% url 'agro:nova_praga' %}" class="br-sign-in small" type="button" data-trigger="login"> Cadastrar</i>
-                 
-                </a>
-                
+            <div class="header-sign-in" style="padding-right: 10px;">
+                {% if request.user.is_anonymous %}
+                <div style="align-items: center; display: flex; flex-direction: column;">
+                    <a href="{% url 'agro:custom_login' %}">
+                        <img style="width: 50px; height: 50px;" src="{% static 'img/usuario.png' %}" alt="perfil"></a>
+                    <a href="{% url 'agro:custom_login' %}"
+                        style="text-decoration: none; color: white; padding: 0;">Entrar</a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}                     
+            <div class="header-sign-in" style="padding-right: 10px;">
+                {% if user.is_authenticated %}
+                <div style="align-items: center; display: flex; flex-direction: column;">
+                    <a href="{% url 'agro:custom_login' %}">
+                        <img style="width: 50px; height: 50px;" src="{% static 'img/usuario.png' %}" alt="perfil"></a>
+                    <a href="{% url 'agro:sair' %}" style="text-decoration: none; color: white; padding: 0;">Sair</a>
+                </div>
+                {% endif %}
+            </div>
+
         </div>
-        <style> 
+        <style>
             .header-sign-in {
                 display: flex;
-                align-items: center; 
-                margin-left: 10px; 
+                align-items: center;
+                margin-left: 10px;
             }
-            
+
             .header-sign-in a {
                 color: #fff;
-                text-decoration: none; 
-                font-size: 1rem; 
-                margin-left: 10px; 
-                padding: 5px 10px; 
+                text-decoration: none;
+                font-size: 1rem;
+                margin-left: 10px;
+                padding: 5px 10px;
             }
-            
+
             .header-sign-in a:hover {
                 color: #ccc;
             }
         </style>
-            
-            
-        
+
+
+
     </header>
 
     {% block main %}

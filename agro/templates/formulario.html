@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Sugestões{% endblock %}
 
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<div class="container formulario">
+<div class="container formulario" style="background-color: rgba(255, 255, 255, 0);">
     <div class="row">
         <div class="col-lg-10 mx-auto my-5">
             <div class="card border-0 shadow rounded-3 my-5">
@@ -14,8 +13,6 @@
                 <h4 class="mx-5 mt-2">Compartilhe suas opiniões e sugestões com a gente!</h4>
                 <form method="POST" action="{% url 'agro:salvar_sugestao' %}">
                     {% csrf_token %}
-
-                    
                     <div class="form-group">
                         {{ form.nome.label_tag }}<br>
                         {{ form.nome }}
@@ -45,4 +42,34 @@
     </div>
 </div>
 
+<!-- Modal de Sucesso -->
+{% if messages %}
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 {% endblock %}
+
+<script>
+    // Exibe o modal de sucesso quando há mensagens
+    {% if messages %}
+        var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+        myModal.show();
+    {% endif %}
+</script>

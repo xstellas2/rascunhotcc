@@ -5,113 +5,151 @@
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<div class="container mt-5 p-4 bg-white rounded shadow">
-    <h1 class="text-center text-h1 mb-4">Definir Nova Praga</h1>
+<!-- Quill.js CSS e JS -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <form method="post" enctype="multipart/form-data" autocomplete="off">
-        {% csrf_token %}
+<div class="wrapper">
+    <div id="main-content">
+        <div class="container p-4 bg-white rounded shadow">
+            <h1 class="text-center text-h1 mb-4">Definir Nova Praga</h1>
 
-        <div class="form-group mb-4">
-            <label for="id_nome" class="form-label">Nome:</label>
-            {{ form.nome }}
+            <form method="post" enctype="multipart/form-data" autocomplete="off">
+                {% csrf_token %}
+
+                <div class="form-group mb-4">
+                    <label for="id_nome" class="form-label">Nome:</label>
+                    {{ form.nome }}
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label">Descrição:</label>
+                    <div id="descricao-editor"></div>
+                    <input type="hidden" name="descricao" id="id_descricao">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label">Causas:</label>
+                    <div id="causas-editor"></div>
+                    <input type="hidden" name="causas" id="id_causas">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="form-label">Tratamento:</label>
+                    <div id="tratamento-editor"></div>
+                    <input type="hidden" name="tratamento" id="id_tratamento">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="id_imagem" class="form-label">Imagem:</label>
+                    {{ form.imagem }}
+                </div>
+
+                <div class="form-group d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-success btn-lg mr-3">
+                        <i class="fas fa-check mr-1"></i> Finalizar
+                    </button>
+                    <a href="{% url 'agro:agro_list' %}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-times mr-1"></i> Cancelar
+                    </a>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group mb-4">
-            <label for="id_descricao" class="form-label">Descrição:</label>
-            {{ form.descricao }}
-        </div>
-
-        <div class="form-group mb-4">
-            <label for="id_imagem" class="form-label">Imagem:</label>
-            {{ form.imagem }}
-        </div>
-
-        <div class="form-group d-flex justify-content-end mt-3">
-            <button type="submit" class="btn btn-success btn-lg mr-3">
-                <i class="fas fa-check mr-1"></i> Finalizar
-            </button>
-            <a href="{% url 'agro:agro_list' %}" class="btn btn-secondary btn-lg">
-                <i class="fas fa-times mr-1"></i> Cancelar
-            </a>
-        </div>
-    </form>
+    </div>
 </div>
+
+<script>
+    // Inicializar os editores Quill.js
+    var quillDescricao = new Quill('#descricao-editor', { theme: 'snow' });
+    var quillCausas = new Quill('#causas-editor', { theme: 'snow' });
+    var quillTratamento = new Quill('#tratamento-editor', { theme: 'snow' });
+
+    // Salvar o conteúdo do editor nos campos ocultos antes de enviar o formulário
+    document.querySelector('form').onsubmit = function() {
+        document.querySelector('#id_descricao').value = quillDescricao.root.innerHTML;
+        document.querySelector('#id_causas').value = quillCausas.root.innerHTML;
+        document.querySelector('#id_tratamento').value = quillTratamento.root.innerHTML;
+    };
+</script>
 <style>
-    /* Geral */
-body {
-    background-color: #f5f5f5; /* cor de fundo suave */
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    margin: auto;
-}
-
-.text-h1 {
-    color: #3C5E4B; /* Verde do tema */
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.form-label {
-    font-size: 1.1rem;
-    color: #333;
-}
-
-.form-control {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    width: 100%;
-    font-size: 1rem;
-    background-color: #f8f8f8;
-}
-
-/* Botões */
-.btn-success {
-    background-color: #3C5E4B;
-    border-color: #3C5E4B;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 20px;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 20px;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-/* Alinhamento dos botões */
-.form-group.d-flex {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.form-group .btn {
-    margin-left: 10px;
-}
-
-/* Layout responsivo */
-@media (max-width: 768px) {
-    .container {
+    /* Estilização geral */
+    body, html {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 20px;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+    }
+    
+    .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        max-width: 700px;
+        width: 100%;
+        margin: auto;
+    }
+    
+    .text-h1 {
+        color: #3C5E4B;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    
+    .form-label {
+        font-size: 1.1rem;
+        color: #333;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn-success {
+        background-color: #3C5E4B;
+        border-color: #3C5E4B;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    
+    .btn:hover {
+        opacity: 0.9;
     }
 
-    .btn {
-        font-size: 0.9rem;
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+    
+        .btn {
+            font-size: 0.9rem;
+        }
     }
-}
-
 </style>
+
 {% endblock %}

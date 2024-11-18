@@ -4,17 +4,83 @@
 
 {% block main %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
 <div class="praga-detalhe">
+    <!-- Botão de voltar -->
+    <a href="{% url 'agro:agro_list' %}" class="voltar-lista">
+        <img class="small" style="max-width: 35px;" src="{% static 'img/voltar.png' %}" alt="Voltar">
+    </a>
+
     <h1 class="praga-nome">{{ praga.nome }}</h1>
     <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-imagem">
-    
-    <p class="praga-descricao"><strong>Descrição:</strong> {{ praga.descricao }}</p>
-    
-    <a href="{% url 'agro:agro_list' %}" class="voltar-lista">Voltar para a lista</a>
+
+    <div class="praga-section">
+        <h2 class="praga-section-title">Descrição</h2>
+        <div class="praga-descricao">{{ praga.descricao|safe }}</div>
+    </div>
+
+    {% if praga.causas %}
+        <div class="praga-section">
+            <h2 class="praga-section-title">Causas</h2>
+            <div class="praga-causas">{{ praga.causas|safe }}</div>
+        </div>
+    {% endif %}
+
+    {% if praga.tratamento %}
+        <div class="praga-section">
+            <h2 class="praga-section-title">Tratamentos</h2>
+            <div class="praga-tratamentos">{{ praga.tratamento|safe }}</div>
+        </div>
+    {% endif %}
 </div>
 
+
 <style>
-        /* Estilos gerais */
+    .praga-descricao, .praga-causas, .praga-tratamentos {
+        color: #333;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    
+    .like-dislike-container {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-like,
+    .btn-dislike {
+        background-color: #3C5E4B;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-like:hover {
+        background-color: #4CAF50;
+    }
+
+    .btn-dislike:hover {
+        background-color: #e53935;
+    }
+
+    .btn-like.liked {
+        background-color: #388e3c;
+        cursor: not-allowed;
+    }
+
+    .btn-dislike.disliked {
+        background-color: #d32f2f;
+        cursor: not-allowed;
+    }
+
     body {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
@@ -23,55 +89,68 @@
         padding: 0;
     }
 
-    /* Estilização para o container principal da página de detalhe da praga */
     .praga-detalhe {
-        max-width: 600px;
+        max-width: 70%;
         margin: 30px auto;
-        padding: 20px;
+        padding: 50px;
         background-color: #ffffff;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        position: relative;
+    }
+
+    .voltar-lista {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        margin: 10px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.3s;
+        max-width: 50px;
+        display: inline-block;
         text-align: center;
     }
 
-    /* Estilo para o nome da praga */
+    .voltar-lista:hover {
+        transform: scale(1.1);
+    }
+
     .praga-nome {
         font-size: 32px;
         font-weight: bold;
         color: #335d50;
-        margin-bottom: 20px;
+        text-align: center;
     }
 
-    /* Estilo para a imagem da praga */
     .praga-imagem {
         max-width: 100%;
         border-radius: 8px;
+        margin: 0 auto 20px;
+        display: block;
+    }
+
+    .praga-section {
         margin-bottom: 20px;
     }
 
-    /* Estilo para a descrição */
-    .praga-descricao {
+    .praga-section-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2a4a42;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #2a4a42;
+        padding-bottom: 5px;
+    }
+
+    .praga-descricao, .praga-causas, .praga-tratamentos {
         font-size: 18px;
-        line-height: 1.5;
+        line-height: 1.6;
         color: #555;
-        margin-bottom: 20px;
+        text-align: justify;
     }
-
-    /* Estilo para o link de voltar */
-    .voltar-lista {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: #ffffff;
-        background-color: #335d50;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-
-    .voltar-lista:hover {
-        background-color: #2a4a42;
-    }
-
 </style>
+
 {% endblock %}
