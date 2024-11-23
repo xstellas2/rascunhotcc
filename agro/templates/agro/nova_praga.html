@@ -59,12 +59,33 @@
 </div>
 
 <script>
-    // Inicializar os editores Quill.js
-    var quillDescricao = new Quill('#descricao-editor', { theme: 'snow' });
-    var quillCausas = new Quill('#causas-editor', { theme: 'snow' });
-    var quillTratamento = new Quill('#tratamento-editor', { theme: 'snow' });
+    var quillDescricao = new Quill('#descricao-editor', {
+        theme: 'snow',
+        placeholder: 'Digite a descrição...',
+        modules: {
+            toolbar: true
+        }
+    });
+    quillDescricao.root.style.color = '#000000'; // Define a cor inicial
 
-    // Salvar o conteúdo do editor nos campos ocultos antes de enviar o formulário
+    var quillCausas = new Quill('#causas-editor', {
+        theme: 'snow',
+        placeholder: 'Digite as causas...',
+        modules: {
+            toolbar: true
+        }
+    });
+    quillCausas.root.style.color = '#000000'; // Define a cor inicial
+
+    var quillTratamento = new Quill('#tratamento-editor', {
+        theme: 'snow',
+        placeholder: 'Digite o tratamento...',
+        modules: {
+            toolbar: true
+        }
+    });
+    quillTratamento.root.style.color = '#000000'; // Define a cor inicial
+
     document.querySelector('form').onsubmit = function() {
         document.querySelector('#id_descricao').value = quillDescricao.root.innerHTML;
         document.querySelector('#id_causas').value = quillCausas.root.innerHTML;
@@ -72,84 +93,139 @@
     };
 </script>
 <style>
-    /* Estilização geral */
-    body, html {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #main-content {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        background-color: #f5f5f5;
-        font-family: Arial, sans-serif;
-    }
-    
+/* Estilo geral */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    margin: auto;
+}
+
+.text-h1 {
+    color: #3C5E4B;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.form-label {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo dos botões */
+.btn-success {
+    background-color: #3C5E4B;
+    border-color: #3C5E4B;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Personalização dos editores Quill.js */
+.ql-editor {
+    border: 1px  #ccc; /* Bordas do editor */
+    border-radius: 5px; /* Arredondando as bordas */
+    padding: 10px; /* Adicionando espaço interno */
+    font-size: 1rem; /* Mesma fonte que outros campos */
+    color: #000000 !important; /* Garantindo a cor do texto */
+    background-color: #E0E0E0 !important; /* Garantindo fundo branco */
+    width: 100%; /* Garantindo que ocupe a largura disponível */
+    box-sizing: border-box; /* Evita quebra do layout com o preenchimento */
+}
+
+.ql-editor * {
+    color: #000000 !important; /* Garantindo a cor preta para todos os elementos dentro do editor */
+}
+
+.ql-snow .ql-picker {
+    color: #000000 !important; /* Forçando texto do seletor a ser preto */
+}
+
+.ql-snow .ql-picker-options {
+    background-color: #E0E0E0 !important; /* Fundo branco para o dropdown */
+    color: #000000 !important; /* Garante que o texto seja preto */
+}
+
+.ql-snow .ql-picker-label {
+    color: #000000 !important; /* Garantindo que o label inicial do seletor seja preto */
+}
+
+.ql-snow .ql-toolbar {
+    border: 1px solid #ccc; /* Borda do toolbar */
+    border-radius: 5px; /* Arredondando o toolbar */
+    background-color: #E0E0E0;
+}
+
+.ql-editor .ql-blank{
+    background-color: #E0E0E0;
+}
+
+input, select, textarea {
+    border-radius: 5px; /* Arredondando as bordas dos campos de texto */
+    border: 1px solid #ccc; /* Borda leve para inputs e selects */
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o preenchimento não quebre o layout */
+}
+
+input[type="file"] {
+    padding: 0; /* Remove o preenchimento do input de arquivo */
+}
+
+@media (max-width: 768px) {
     .container {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 30px;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-        max-width: 700px;
-        width: 100%;
-        margin: auto;
-    }
-    
-    .text-h1 {
-        color: #3C5E4B;
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-    
-    .form-label {
-        font-size: 1.1rem;
-        color: #333;
-    }
-    
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    
-    .btn-success {
-        background-color: #3C5E4B;
-        border-color: #3C5E4B;
-        color: white;
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-    
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-    
-    .btn:hover {
-        opacity: 0.9;
+        padding: 20px;
     }
 
-    @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-        }
-    
-        .btn {
-            font-size: 0.9rem;
-        }
+    .btn {
+        font-size: 0.9rem;
     }
+}
+
 </style>
 
 {% endblock %}

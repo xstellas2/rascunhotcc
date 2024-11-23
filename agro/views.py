@@ -46,6 +46,8 @@ def agro_editar(request, pk):
         form = AgroForm(instance=praga)  
     return render(request, 'agro/agro_editar.html', {'form': form, 'praga': praga})
 
+
+
 def agro_detalhe(request, praga_id):
     praga = get_object_or_404(Praga, id=praga_id)
     return render(request, 'agro/agro_detalhe.html', {'praga': praga})
