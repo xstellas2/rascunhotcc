@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from . import views
-from .views import salvar_sugestao, listar_sugestoes, editar_sugestao, deletar_sugestao
+from .views import salvar_sugestao, listar_sugestoes, deletar_sugestao
 from .views import custom_login
 
 
@@ -17,8 +17,7 @@ urlpatterns = [
     path('gafanhotos/', views.gafanhotos, name='gafanhotos'),
     path('sobre_nos/', views.sobre_nos, name='sobre_nos'),
     path('formulario/', views.formulario, name='formulario'),
-    path('deletar_sugestao/<int:pk>/', deletar_sugestao, name='agro-delete'),
-    path('editar_sugestoes/<int:pk>/', editar_sugestao, name='editar_sugestao'),  
+    path('deletar_sugestao/<int:pk>/', deletar_sugestao, name='agro-delete'),  
     path('login/', custom_login, name='custom_login'),
     path('nova_praga/', views.nova_praga, name='nova_praga'),
     path('agro_list/', views.agro_list, name='agro_list'),

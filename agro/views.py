@@ -1,9 +1,5 @@
-from django.shortcuts import render
-from django.contrib import messages
-from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
-
 from .models import Sugestao
 from .forms import SugestaoForm
 from .forms import AgroForm
@@ -116,17 +112,6 @@ def deletar_sugestao(request, pk):
     
     messages.success(request, 'Sugestão deletada com sucesso!')
     return redirect('agro:listar_sugestoes')  
-
-def editar_sugestao(request, pk):
-    sugestao = get_object_or_404(Sugestao, pk=pk)
-    if request.method == 'POST':
-        form = SugestaoForm(request.POST, instance=sugestao)
-        if form.is_valid():
-            form.save()
-            return redirect('agro:listar_sugestoes')
-    else:
-        form = SugestaoForm(instance=sugestao)
-    return render(request, 'editar_sugestoes.html', {'form': form})
 
 def listar_sugestoes(request):
     contato = Sugestao.objects.all()  # Recupera todas as sugestões

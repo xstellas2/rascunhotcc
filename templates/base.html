@@ -116,14 +116,13 @@
     <footer class="footer">
         <div class="footer-top d-flex justify-content-between align-items-center">
             <div class="footer-logo d-flex flex-column align-items-center">
-                <h1>PragaZero</h1>
-                <div class="social-media d-flex">
-                    <a href="#"><img src="{% static 'img/tiktok.png' %}" alt="TikTok"></a>
-                    <a href="#"><img src="{% static 'img/twitter.png' %}" alt="Twitter"></a>
-                    <a href="#"><img src="{% static 'img/facebook.png' %}" alt="Facebook"></a>
-                    <a href="#"><img src="{% static 'img/instagram.png' %}" alt="Instagram"></a>
+                <h1 class="footer-title">PragaZero</h1>
+                <div class="contact-emails">
+                    <p>Email: <a href="https://mail.google.com/mail/?view=cm&to=alves.thauany@escolar.ifrn.edu.br" target="_blank">alves.thauany@escolar.ifrn.edu.br</a></p>
+                    <p>Email: <a href="https://mail.google.com/mail/?view=cm&to=m.stella@escolar.ifrn.edu.br" target="_blank">m.stella@escolar.ifrn.edu.br</a></p>
                 </div>
             </div>
+            
             <div class="footer-links d-flex">
                 <div class="footer-link-group">
                     <h2>Sobre nós</h2>
@@ -139,6 +138,69 @@
             <p>© PragaZero 2024. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <style>
+        /* Estilo do nome "PragaZero" */
+        .footer-title {
+            font-size: 1.5rem; /* Mesma altura do "Sobre nós" */
+            color: #d3f0e2; /* Tom verde suave */
+            font-family: 'Arial', sans-serif; /* Mesma fonte */
+            font-weight: normal; /* Deixa o texto menos destacado */
+            margin-bottom: 10px;
+            text-align: left; /* Alinhamento para harmonizar com o layout */
+        }
+
+                /* Estilo do Título */
+        .footer-title {
+            font-size: 2.5rem; /* Destaque no tamanho */
+            color: #ffffff; /* Branco puro */
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif; /* Fonte elegante */
+
+        }
+        
+        /* Estilo dos Contatos */
+        .contact-emails {
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .contact-emails p {
+            font-size: 1.2rem;
+            color: #d4f3e1; /* Tom verde suave */
+            margin: 10px 0;
+        }
+        
+        .contact-emails span {
+            font-weight: bold;
+            color: #ffffff; /* Destaque para "Email:" */
+        }
+        
+        .contact-emails a {
+            color: #8cd3a6; /* Verde médio para links */
+            text-decoration: none; /* Remove sublinhado */
+            font-weight: bold;
+            transition: all 0.3s ease; /* Suavidade nas interações */
+        }
+        
+        .contact-emails a:hover {
+            color: #ffffff; /* Fica branco ao passar o mouse */
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8); /* Brilho ao passar o mouse */
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .footer-logo {
+                padding: 20px;
+            }
+            .footer-title {
+                font-size: 2rem;
+            }
+            .contact-emails p {
+                font-size: 1rem;
+            }
+        }
+        
+        
+    </style>
 </body>
 
 </html>

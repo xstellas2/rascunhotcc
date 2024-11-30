@@ -34,9 +34,6 @@
                             
                                     <!-- Adicionando os botões dentro do card, mas de forma a manter a responsividade -->
                                     <div class="mt-3 d-flex">
-                                        <a class="btn btn-edit" href="{% url 'agro:editar_sugestao' cont.pk %}">
-                                            Editar
-                                        </a>
                                         <button class="btn btn-delete" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ cont.pk }}">
                                             Excluir
                                         </button>
@@ -127,23 +124,12 @@
         }
     }
 
-    .btn-edit,
     .btn-delete {
         padding: 8px 16px;
         font-size: 14px;
         font-weight: bold;
         border-radius: 5px;
         transition: background-color 0.3s ease;
-    }
-
-    .btn-edit {
-        background-color: #3C5E4B;
-        color: white;
-        margin-right: 5px;
-    }
-
-    .btn-edit:hover {
-        background-color: #388e3c;
     }
 
     .btn-delete {
