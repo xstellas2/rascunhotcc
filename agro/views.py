@@ -97,7 +97,6 @@ def salvar_sugestao(request):
         if form.is_valid():
             form.save()
             # Mensagem de sucesso
-            messages.success(request, 'Sua sugestão foi enviada com sucesso!')
             return redirect('agro:index')  
     else:
         form = SugestaoForm()

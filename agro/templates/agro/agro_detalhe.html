@@ -8,7 +8,7 @@
 <div class="praga-detalhe">
     <!-- Botão de voltar -->
     <a href="{% url 'agro:agro_list' %}" class="voltar-lista">
-        <img class="small" style="max-width: 40px;" src="{% static 'img/voltar.png' %}" alt="Voltar">
+        <img class="small" style="max-width: 35px;" src="{% static 'img/voltar.png' %}" alt="Voltar">
     </a>
 
     <h1 class="praga-nome">{{ praga.nome }}</h1>
@@ -32,7 +32,16 @@
             <div class="praga-tratamentos">{{ praga.tratamento|safe }}</div>
         </div>
     {% endif %}
+    <div class="like-dislike-container" style="padding-top: 30px;">
+        <button class="btn-like" onclick="handleLike({{ praga.id }})">
+            👍 <span id="like-count-{{ praga.id }}">{{ praga.likes }}</span>
+        </button>
+        <button class="btn-dislike" onclick="handleDislike({{ praga.id }})">
+            👎 <span id="dislike-count-{{ praga.id }}">{{ praga.dislikes }}</span>
+        </button>
+    </div>
 </div>
+
 
 
 <style>
@@ -126,14 +135,11 @@
     }
 
     .praga-imagem {
-        width: 300px; /* Define uma largura fixa */
-        height: 200px; /* Define uma altura fixa */
-        object-fit: cover; /* Garante que a imagem seja ajustada sem distorção */
-        border-radius: 8px; /* Bordas arredondadas */
+        max-width: 100%;
+        border-radius: 8px;
         margin: 0 auto 20px;
         display: block;
     }
-    
 
     .praga-section {
         margin-bottom: 20px;
@@ -160,6 +166,16 @@
         color: #333;
     }
     
+    .praga-imagem {
+        width: 300px; /* Define uma largura fixa */
+        height: 200px; /* Define uma altura fixa */
+        object-fit: cover; /* Garante que a imagem seja ajustada sem distorção */
+        border-radius: 8px; /* Bordas arredondadas */
+        margin: 0 auto 20px;
+        display: block;
+    }
+    
+
 
 </style>
 
