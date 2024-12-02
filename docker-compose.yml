@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/django/Dockerfile
+
+    image: django_legalis
+    depends_on:
+      - nginx
+    env_file:
+      - .env
+    volumes:
+      - static_data:/app/staticfiles
+      - banco_data:/app/banco
+    #    ports:
+    #      - '5000:5000'
+    command: ./start
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/nginx/Dockerfile
+    volumes:
+      - static_data:/app/staticfiles
+    ports:
+      - 84:80
+    restart: unless-stopped
+
+
+volumes:
+  static_data:
+  banco_data:
