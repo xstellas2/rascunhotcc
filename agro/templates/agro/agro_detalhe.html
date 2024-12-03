@@ -32,7 +32,7 @@
             <div class="praga-tratamentos">{{ praga.tratamento|safe }}</div>
         </div>
     {% endif %}
-    <div class="like-dislike-container" style="padding-top: 30px;">
+    <div class="like-dislike-container">
         <button class="btn-like" onclick="handleLike({{ praga.id }})">
             👍 <span id="like-count-{{ praga.id }}">{{ praga.likes }}</span>
         </button>
@@ -42,6 +42,54 @@
     </div>
 </div>
 
+<script>
+    function handleLike(pragaId) {
+        fetch(/like/${pragaId}/, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json' // Certifique-se de que o backend aceita JSON
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar like!');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById(like-count-${pragaId}).innerText = data.likes;
+                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
+            })
+            .catch(error => {
+                console.error('Erro no like:', error);
+            });
+    }
+
+    function handleDislike(pragaId) {
+        fetch(/dislike/${pragaId}/, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar dislike!');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById(like-count-${pragaId}).innerText = data.likes;
+                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
+            })
+            .catch(error => {
+                console.error('Erro no dislike:', error);
+            });
+    }
+
+</script>
 
 
 <style>
@@ -166,16 +214,6 @@
         color: #333;
     }
     
-    .praga-imagem {
-        width: 300px; /* Define uma largura fixa */
-        height: 200px; /* Define uma altura fixa */
-        object-fit: cover; /* Garante que a imagem seja ajustada sem distorção */
-        border-radius: 8px; /* Bordas arredondadas */
-        margin: 0 auto 20px;
-        display: block;
-    }
-    
-
 
 </style>
 

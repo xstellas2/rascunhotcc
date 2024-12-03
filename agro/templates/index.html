@@ -8,336 +8,245 @@
 <html lang="pt">
 
 <head>
-
-
     <title>PragaZero</title>
 </head>
 
 <body>
     <main>
-        <section>
-            <div class="d-flex justify-content-around align-items-center mb-5">
-                <div class="text" style="margin-bottom: 150px;">
-                    <h1>Interessado(a) em saber como combater efetivamente as pragas na agricultura?</h1>
-                    <p>As pragas de importância agrícola são as espécies que podem comprometer a produção de plantas
-                        cultivadas.
-                        Confira as informações abaixo para ficar por dentro do assunto!</p>
-                </div>
-                <div>
-                    <img style="margin-top: 80px;" src="{% static 'img/image3.png' %}" alt="Informações sobre pragas">
-                </div>
-            </div>
-        </section>
-
-        <div class="carrosel">
-            <h3 style="padding-bottom: 20px;" class="tx-carrosel h3-carrosel">Aqui temos uma lista com alguns tópicos
-                importantes sobre as pragas e
-                como evitá-las:</h3>
-
-
-            <!-- Swiper Container -->
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    {% for praga in pragas %}
-                    <div class="swiper-slide">
-                        <div class="praga-item">
-                            <a href="{% url 'agro:agro_detalhe' praga.id %}">
-                                <div class="praga-image-wrapper">
-                                    <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-image">
-                                    <div class="praga-hover-info">
-                                    </div>
-                                </div>
-                                <h2 class="praga-title">{{ praga.nome|slice:":50" }}</h2>
-                            </a>
+        <!-- Primeira Seção -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center text-center text-md-start">
+                    <!-- Texto -->
+                    <div class="col-md-6 mb-4">
+                        <h1 class="fw-bold">Interessado(a) em saber como combater efetivamente as pragas na agricultura?
+                        </h1>
+                        <p>As pragas de importância agrícola são as espécies que podem comprometer a produção de plantas
+                            cultivadas. Confira as informações abaixo para ficar por dentro do assunto!</p>
+                    </div>
+                    <!-- Imagem -->
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-center justify-content-md-end">
+                            <img src="{% static 'img/image3.png' %}" class="img-fluid rounded-circle"
+                                alt="Informações sobre pragas">
                         </div>
                     </div>
-                    {% empty %}
-                    <p>Nenhuma praga cadastrada.</p>
-                    {% endfor %}
-                </div>
-
-                <!-- Add Pagination -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <!-- Paginação -->
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-        <section class="info-section d-flex justify-content-center align-items-center mb-5">
-            <div class="d-flex justify-content-around align-items-center w-100">
-                <div class="info-image" style="margin-right: 15px;">
-                    <img src="{% static 'img/agricultura.jpg' %}" alt="Informações sobre a plantação">
-                </div>
-
-                <div style="margin-left: 15px;" class="text">
-                    <h2 style="text-align: start; color: #d0d3d2;">Proteja sua Colheita, Preserve seu Futuro!</h2>
-                    <p> No PragaZero, estamos aqui para ajudar você a manter sua lavoura saudável e produtiva!</p>
-
-                    <p>🌾 <strong>Cultive com Confiança:</strong> Nossa missão é empoderar os pequenos agricultores com
-                        informações acessíveis e confiáveis</p>
-
-                    <p>🔍 <strong>Explore o nosso site: </strong> Descubra tudo o que você precisa para uma agricultura
-                        familiar sustentável e livre de pragas. </p>
-
-                    <a href="{% url 'agro:agro_list' %}" class="info-button">Clique Aqui</a>
                 </div>
             </div>
         </section>
 
-        <script>
-            var swiper = new Swiper('.swiper-container', {
-                loop: true, // Permite navegação infinita
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                slidesPerView: 3, // Padrão: 3 slides visíveis
-                spaceBetween: 3, // Espaço entre os slides
-                breakpoints: {
-                    1024: { // Para telas maiores ou iguais a 1024px
-                        slidesPerView: 3,
-                        spaceBetween: 3,
-                    },
-                    768: { // Para telas maiores ou iguais a 768px
-                        slidesPerView: 2,
-                        spaceBetween: 3,
-                    },
-                    480: { // Para telas maiores ou iguais a 480px
-                        slidesPerView: 1,
-                        spaceBetween: 3,
-                    },
-                },
-            });
-        </script>
+        <section class="py-5">
+            <div class="container">
+                <h3 class="text-center mb-4" id="topicos-pragas">
+                    Aqui temos uma lista com alguns tópicos importantes sobre as pragas e como evitá-las:
+                </h3>
 
-        <style>
-            /* Ajuste para a navegação do Swiper */
-            .swiper-button-prev,
-            .swiper-button-next {
-                position: absolute;
-                top: 50%;
-                /* Centraliza verticalmente */
-                transform: translateY(-50%);
-                /* Ajusta para que fique exatamente centralizado */
-                
-                color: #3c5e4b;
-                /* Cor dos botões */
-                font-size: 20px;
-                /* Tamanho do botão */
-            }
-
-            /* Ajuste a posição dos botões */
-            .swiper-button-prev {
-                left: 2%;
-                /* Alinha à esquerda, ajuste conforme necessário */
-            }
-
-            .swiper-button-next {
-                right: 2%;
-                /* Alinha à direita, ajuste conforme necessário */
-            }
-
-            /* Estilo para melhorar o hover */
-            .swiper-button-prev:hover,
-            .swiper-button-next:hover {
-                color: #2a4a42;
-                /* Cor ao passar o mouse */
-            }
-
-            .swiper-pagination {
-                position: absolute !important;
-                /* Força o estilo de posição */
-                bottom: -20px;
-                /* Ajuste este valor para mover mais para baixo */
-                left: 0;
-                width: 100%;
-                text-align: center;
-                z-index: 10;
-                /* Garante que fique acima de outros elementos */
-            }
-
-            .swiper-wrapper {
-                margin: 0;
-            }
-
-
-
-            /* Responsivo: Ajuste para telas menores */
-            @media (max-width: 768px) {
-
-                .swiper-button-prev,
-                .swiper-button-next {
-                    font-size: 16px;
-                    /* Reduz o tamanho dos botões */
-                    left: 5px;
-                    /* Ajuste para telas pequenas */
-                    right: 5px;
-                }
-            }
-
-
-            .swiper-container {
-                position: relative;
-                width: 100%;
-                /* Garante que o carrossel ocupe toda a largura da tela */
-                overflow: hidden;
-                /* Impede que o conteúdo transborde */
-                height: auto;
-                /* Permite ajustar com base no conteúdo */
-                margin: 0 auto;
-                /* Centraliza o carrossel */
-                height: auto;
-                padding-bottom: 50px;
-            }
-
-
-            .swiper-slide {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-shrink: 0;
-                /* Impede que o slide encolha */
-                width: auto;
-                /* Ajusta o tamanho automaticamente */
-            }
-
-            .praga-item {
-                width: 100%;
-                /* Faz com que os itens do carrossel ocupem 100% do espaço do slide */
-                max-width: 300px;
-                /* Limita a largura máxima */
-                height: 100%;
-                /* Faz com que o item ocupe toda a altura disponível */
-                max-height: 300px;
-                /* Limita a altura máxima */
-                background-color: #ffffff;
-                border-radius: 15px;
-                overflow: hidden;
-                text-align: center;
-                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s;
-            }
-
-            .praga-image-wrapper {
-                width: 100%;
-                height: 200px;
-            }
-
-            .praga-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .praga-title {
-                color: #333333;
-                font-size: 25px;
-                padding: 15px;
-                margin: 0;
-            }
-
-            .info-section {
-                text-align: start;
-                margin-bottom: 100px;
-            }
-
-            .info-container {
-                max-width: 1000px;
-                gap: 20px;
-                display: flex;
-                align-items: center;
-            }
-
-            .info-image img {
-                max-width: 100%;
-                border-radius: 10px;
-                width: 300px;
-                height: auto;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .info-content h1 {
-                font-size: 30px;
-                font-weight: 700;
-                color: #e0e0e0;
-                margin-bottom: 20px;
-                text-align: start;
-            }
-
-            .info-content p {
-                font-size: 18px;
-                color: #d0d3d2;
-                margin-bottom: 15px;
-                line-height: 1.6;
-                text-align: start;
-            }
-
-            .info-content strong {
-                color: #a0cfa0;
-                /* Destaque para palavras importantes */
-            }
-
-            .info-button {
-                display: inline-block;
-                padding: 12px 24px;
-                background-color: #609964;
-                color: #ffffff;
-                text-decoration: none;
-                font-weight: 600;
-                border-radius: 5px;
-                transition: background-color 0.3s ease;
-            }
-
-            .info-button:hover {
-                background-color: #507a55;
-            }
-        </style>
-
-
-
-
-        <section class="d-flex justify-content-center align-items-center mb-5">
-            <div class="d-flex justify-content-around align-items-center w-100">
-                <div style="margin-right: 15px;">
-                    <img src="{% static 'img/image7.png' %}" alt="Cuidados com plantações">
-                </div>
-                <div style="margin-left: 15px;" class="text">
-                    <h1 style="text-align: start;">Dicas de cuidados com as plantações</h1>
-
-                    <p style="text-align: start; margin-bottom: 100px;">
-                        Pragas podem se tornar um grande problema para a produção agrícola.
-                        Conheça nossas dicas e mantenha suas plantações sempre seguras.</p>
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for praga in pragas %}
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
+                            class="{% if forloop.first %}active{% endif %}"></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for praga in pragas %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <a href="{% url 'agro:agro_detalhe' praga.id %}">
+                                <img class="d-block w-100" src="{{ praga.imagem.url }}" alt="{{ praga.nome }}">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ praga.nome }}</h5>
+                                <p>Clique para obter informações</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="d-flex justify-content-center align-items-center mb-5">
-            <div class="d-flex justify-content-around align-items-center w-100">
-                <div style="margin-right: 15px;">
-                    <img src="{% static 'img/image8.png' %}" alt="Para que servem os agrotóxicos?">
+        
+        
+        
+
+
+
+        <!-- Segunda Seção -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="{% static 'img/agricultura.jpg' %}" alt="Informações sobre a plantação"
+                            class="img-fluid rounded shadow">
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Proteja sua Colheita, Preserve seu Futuro!</h2>
+                        <p>No PragaZero, estamos aqui para ajudar você a manter sua lavoura saudável e produtiva!</p>
+                        <p>🌾 <strong>Cultive com Confiança:</strong> Nossa missão é empoderar os pequenos agricultores
+                            com
+                            informações acessíveis e confiáveis.</p>
+                        <p>🔍 <strong>Explore o nosso site:</strong> Descubra tudo o que você precisa para uma
+                            agricultura
+                            familiar sustentável e livre de pragas.</p>
+                        <a href="{% url 'agro:agro_list' %}" class="btn btn-success">Clique Aqui</a>
+                    </div>
                 </div>
-                <div style="margin-left: 15px;" class="text">
-                    <h1 style="text-align: start;">Para que servem os agrotóxicos?</h1>
-                    <p style="text-align: start; margin-bottom: 100px;">Os agrotóxicos são compostos químicos, físicos
-                        ou biológicos amplamente empregados no setor agropecuário, especialmente em monoculturas.
-                        A Anvisa classifica os agrotóxicos em quatro classes de danos à saúde humana: pouco tóxicos,
-                        medianamente tóxicos, altamente tóxicos e extremamente tóxicos. Nos rótulos desses produtos,
-                        além das cores que representam cada classe, são indicadas também as doses de letalidade de cada
-                        uma.</p>
+            </div>
+        </section>
+
+        <!-- Terceira Seção -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="{% static 'img/image7.png' %}" alt="Cuidados com plantações" class="img-fluid">
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Dicas de cuidados com as plantações</h1>
+                        <p>Pragas podem se tornar um grande problema para a produção agrícola. Conheça nossas dicas e
+                            mantenha suas plantações sempre seguras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quarta Seção -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="{% static 'img/image8.png' %}" alt="Para que servem os agrotóxicos?"
+                            class="img-fluid">
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Para que servem os agrotóxicos?</h1>
+                        <p>Os agrotóxicos são compostos químicos, físicos ou biológicos amplamente empregados no setor
+                            agropecuário, especialmente em monoculturas. A Anvisa classifica os agrotóxicos em quatro
+                            classes de danos à saúde humana: pouco tóxicos, medianamente tóxicos, altamente tóxicos e
+                            extremamente tóxicos.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-
-
-    {% endblock %}
-
+    
 </body>
 
+<style>
+    #topicos-pragas {
+        font-family: 'Poppins', sans-serif; /* Fonte estilosa e limpa */
+        color: #e8e8e8; /* Cor branca gelo (semelhante ao texto da imagem) */
+        text-align: center; /* Centraliza o texto */
+        margin-bottom: 1rem; /* Espaçamento inferior */
+        font-size: 1.8rem; /* Tamanho do texto */
+        line-height: 1.6; /* Melhor espaçamento entre linhas */
+    }
+    
+    
+section {
+    margin-bottom: 50px; /* Ajuste o valor conforme necessário */
+}
+
+::marker{
+    color: #dddddd00;
+}    
+
+
+section.py-5 {
+    min-height: 700px; /* Ajuste o valor conforme necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Ajuste o tamanho do carrossel, se necessário */
+#carouselExampleIndicators {
+    width: 800px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px; /* Adicionado para bordas arredondadas */
+}
+
+/* Estilo da legenda do carrossel */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+    padding: 15px;
+    border-radius: 10px; /* Bordas arredondadas na legenda */
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.carousel-caption h5 {
+    font-size: 1.5rem; /* Tamanho do título ajustado */
+    font-weight: 600;
+    color: #fff; /* Cor branca para o título */
+    margin-bottom: 0.5rem;
+}
+
+.carousel-caption p {
+    font-size: 1rem; /* Tamanho do texto da legenda */
+    color: #ddd; /* Cor acinzentada */
+    margin: 0;
+    text-align: center; /* Texto centralizado */
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 300px; /* Altura ajustada para dispositivos menores */
+    }
+
+    .carousel-caption h5 {
+        font-size: 1.25rem; /* Tamanho menor para o título em dispositivos menores */
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem; /* Tamanho menor para o texto da legenda */
+    }
+}
+
+
+.text {
+    position: relative;
+    z-index: 1; /* Garante que a imagem redonda não cubra o texto */
+}
+
+.rounded-circle {
+    max-width: 100%; /* Limita a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    width: 300px; /* Largura padrão */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .rounded-circle {
+        width: 250px; /* Reduz a largura em dispositivos móveis */
+    }
+}
+
+@media (max-width: 576px) {
+    .rounded-circle {
+        width: 150px; /* Largura ainda menor em telas muito pequenas */
+    }
+}
+
+
+</style>
+
 </html>
+{% endblock %}

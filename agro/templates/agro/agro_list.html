@@ -14,398 +14,398 @@
         <div class="col">
             <div class="card h-100 shadow-sm">
                 <a href="{% url 'agro:agro_detalhe' praga.id %}" class="text-decoration-none">
-                    
-                    <div class="praga-image-wrapper">
-                        <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-image">
+                    <div class="card-img-top d-flex justify-content-center align-items-center"
+                        style="height: 250px; overflow: hidden;">
+                        <img src="{{ praga.imagem.url }}" class="img-fluid" alt="{{ praga.nome }}"
+                            style="max-height: 100%; max-width: 100%;">
                     </div>
                     <div class="card-body text-center">
                         <h2 class="card-title h5 text-dark">{{ praga.nome }}</h2>
                     </div>
                 </a>
-            <div>
-                {% if not user.is_authenticated %}
-                <div class="like-dislike-container">
-                    <button class="btn-like" onclick="handleLike({{ praga.id }})">
-                        👍 <span id="like-count-{{ praga.id }}">{{ praga.likes }}</span>
-                    </button>
-                    <button class="btn-dislike" onclick="handleDislike({{ praga.id }})">
-                        👎 <span id="dislike-count-{{ praga.id }}">{{ praga.dislikes }}</span>
-                    </button>
-                </div>
-                {% endif %}
+                <div>
+                    {% if not user.is_authenticated %}
+                    <div class="like-dislike-container">
+                        <button class="btn-like" onclick="handleLike({{ praga.id }})">
+                            👍 <span id="like-count-{{ praga.id }}">{{ praga.likes }}</span>
+                        </button>
+                        <button class="btn-dislike" onclick="handleDislike({{ praga.id }})">
+                            👎 <span id="dislike-count-{{ praga.id }}">{{ praga.dislikes }}</span>
+                        </button>
+                    </div>
+                    {% endif %}
 
 
-                <script>
-                    function handleLike(pragaId) {
-                        fetch(/like/${pragaId}/, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRFToken': '{{ csrf_token }}',
-                                'Content-Type': 'application/json' // Certifique-se de que o backend aceita JSON
-                            }
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Erro ao enviar like!');
+                    <script>
+                        function handleLike(pragaId) {
+                            fetch(/like/${pragaId}/, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRFToken': '{{ csrf_token }}',
+                                    'Content-Type': 'application/json' // Certifique-se de que o backend aceita JSON
                                 }
-                                return response.json();
                             })
-                            .then(data => {
-                                document.getElementById(like-count-${pragaId}).innerText = data.likes;
-                                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
-                            })
-                            .catch(error => {
-                                console.error('Erro no like:', error);
-                            });
-                    }
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao enviar like!');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    document.getElementById(like-count-${pragaId}).innerText = data.likes;
+                                    document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
+                                })
+                                .catch(error => {
+                                    console.error('Erro no like:', error);
+                                });
+                        }
 
-                    function handleDislike(pragaId) {
-                        fetch(/dislike/${pragaId}/, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRFToken': '{{ csrf_token }}',
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Erro ao enviar dislike!');
+                        function handleDislike(pragaId) {
+                            fetch(/dislike/${pragaId}/, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRFToken': '{{ csrf_token }}',
+                                    'Content-Type': 'application/json'
                                 }
-                                return response.json();
                             })
-                            .then(data => {
-                                document.getElementById(like-count-${pragaId}).innerText = data.likes;
-                                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
-                            })
-                            .catch(error => {
-                                console.error('Erro no dislike:', error);
-                            });
-                    }
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao enviar dislike!');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    document.getElementById(like-count-${pragaId}).innerText = data.likes;
+                                    document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
+                                })
+                                .catch(error => {
+                                    console.error('Erro no dislike:', error);
+                                });
+                        }
 
-                </script>
+                    </script>
 
 
 
 
-                {% if user.is_authenticated %}
-                <div class="edit-delete-wrapper">
-                    <a href="{% url 'agro:agro_editar' praga.id %}" class="btn-edit">Editar</a>
-                    <form method="POST" action="{% url 'agro:agro_deletar' praga.pk %}"
-                        style="display:inline-block;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-delete"
-                            onclick="return confirm('Tem certeza que deseja deletar esta praga?');">Deletar</button>
-                    </form>
+                    {% if user.is_authenticated %}
+                    <div class="edit-delete-wrapper">
+                        <a href="{% url 'agro:agro_editar' praga.id %}" class="btn-edit">Editar</a>
+                        <form method="POST" action="{% url 'agro:agro_deletar' praga.pk %}"
+                            style="display:inline-block;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-delete"
+                                onclick="return confirm('Tem certeza que deseja deletar esta praga?');">Deletar</button>
+                        </form>
+                    </div>
+                    {% endif %}
+
                 </div>
-                {% endif %}
-
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 </div>
 
 
 
 
 <div class="pagination mt-4">
-<nav aria-label="Paginação">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page=1">&laquo; Primeira</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-        </li>
-        {% endif %}
+    <nav aria-label="Paginação">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; Primeira</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            </li>
+            {% endif %}
 
-        <li class="page-item disabled">
-            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
-        </li>
+            <li class="page-item disabled">
+                <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            </li>
 
-        {% if page_obj.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 </div>
 
 
 
 <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .pagination .step-links a {
+        margin: 0 5px;
+        padding: 10px 15px;
+        background-color: #3C5E4B;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination .step-links a:hover {
+        background-color: #4CAF50;
+    }
+
+    .pagination .current {
+        margin: 0 5px;
+        padding: 10px 15px;
+        background-color: #ddd;
+        color: #555;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    header,
+    footer {
+        position: relative;
+        z-index: 10;
+    }
+
+    main {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 10px;
+        /* Evita sobreposição */
+        margin-bottom: 10px;
+    }
+
+    .praga-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* Ajusta o número de colunas automaticamente */
+        gap: 20px;
+        /* Espaçamento entre os cards */
+        padding: 20px;
+        /* Espaçamento interno */
+        box-sizing: border-box;
+    }
+
+    #main-content {
+        padding-bottom: 60px;
+        /* Espaço para o footer */
+        min-height: calc(100vh - 130px);
+        /* Altura total menos header e footer */
+        box-sizing: border-box;
+    }
+
+    .like-dislike-container {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn-like,
+    .btn-dislike {
+        background-color: #3C5E4B;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-like:hover {
+        background-color: #4CAF50;
+    }
+
+    .btn-dislike:hover {
+        background-color: #e53935;
+    }
+
+
+
+    #main-content {
+        padding-bottom: 60px;
+        /* Espaço para o footer */
+        padding-left: 10%;
+        padding-right: 10%;
+        min-height: calc(120vh - 100px);
+        /* Altura total menos header e footer */
+        font-family: Arial, sans-serif;
+        display: flex;
+        /* Para centralizar o conteúdo */
+        flex-direction: column;
+        justify-content: center;
+        /* Centraliza verticalmente */
+        align-items: center;
+        /* Centraliza horizontalmente */
+        box-sizing: border-box;
+        /* Garante que padding seja considerado */
+        overflow-y: auto;
+        /* Permite rolagem se necessário */
+    }
+
+
+    /* Container para o formulário */
+    /* CSS para ajustar largura dos cards */
+    .card-fixed-width {
+        width: 18rem;
+        /* Largura fixa para os cards */
+        margin: auto;
+        /* Centraliza o card dentro da coluna */
+    }
+
+    /* Aumentar a largura da grid */
+    .container {
+        max-width: 80%;
+        /* Define a largura máxima da grid */
+    }
+
+    .card {
+        width: 100%;
+        /* Faz o card respeitar o tamanho da coluna */
+    }
+
+    .row {
+        margin: 0;
+        /* Garante que o espaçamento entre linhas esteja correto */
+    }
+
+
+
+    .section-title {
+        text-align: center;
+        color: #2d3e3f;
+        font-size: 36px;
+        font-weight: bold;
+        padding-top: 20px;
+    }
+
+    .content-wrapper {
+        flex-grow: 1;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    .praga-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* 4 colunas em telas grandes */
+        padding: 20px 20px 5% 20px;
+    }
+
+    @media (max-width: 1199px) and (min-width: 1025px) {
+
+        /* Estilo para laptops e desktops convencionais */
+        .praga-item {
+            max-height: 300px;
+            /* Para cards menores */
         }
+    }
 
-        .pagination .step-links a {
-            margin: 0 5px;
-            padding: 10px 15px;
-            background-color: #d3f0e2;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .pagination .step-links a:hover {
-            background-color: #d3f0e2;
-        }
-
-        .pagination .current {
-            margin: 0 5px;
-            padding: 10px 15px;
-            background-color: #ddd;
-            color: #555;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-
-
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        header,
-        footer {
-            position: relative;
-            z-index: 10;
-        }
-
-        main {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 20px;
-            box-sizing: border-box;
-            margin-top: 10px;
-            /* Evita sobreposição */
-            margin-bottom: 10px;
-        }
-
+    /* Para telas médias (ex: tablets) */
+    @media (max-width: 1024px) {
         .praga-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            /* Ajusta o número de colunas automaticamente */
-            gap: 20px;
-            /* Espaçamento entre os cards */
-            padding: 20px;
-            /* Espaçamento interno */
-            box-sizing: border-box;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 colunas */
+        }
+    }
+
+    /* Para telas menores (ex: celulares) */
+    @media (max-width: 768px) {
+        .praga-grid {
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 colunas */
+        }
+    }
+
+    /* Para telas muito pequenas (ex: celulares em modo retrato) */
+    @media (max-width: 480px) {
+        .praga-grid {
+            grid-template-columns: 1fr;
+            /* 1 coluna */
+        }
+    }
+
+    @media (max-width: 320px) {
+        .praga-grid {
+            grid-template-columns: 1fr;
         }
 
-        #main-content {
-            padding-bottom: 60px;
-            /* Espaço para o footer */
-            min-height: calc(100vh - 130px);
-            /* Altura total menos header e footer */
-            box-sizing: border-box;
-        }
-
-        .like-dislike-container {
-            display: flex;
-            gap: 10px;
-            padding-bottom: 20px;
-            justify-content: center;
-            align-items: center;
+        .praga-item {
+            font-size: 14px;
+            /* Ajustar tamanho de fonte */
         }
 
         .btn-like,
         .btn-dislike {
-            background-color: #3C5E4B;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-size: 12px;
+            /* Botões menores */
+            padding: 8px;
+            /* Espaçamento reduzido */
         }
-
-        .btn-like:hover {
-            background-color: #4CAF50;
-        }
-
-        .btn-dislike:hover {
-            background-color: #e53935;
-        }
+    }
 
 
-
-        #main-content {
-            padding-bottom: 60px;
-            /* Espaço para o footer */
-            padding-left: 10%;
-            padding-right: 10%;
-            min-height: calc(120vh - 100px);
-            /* Altura total menos header e footer */
-            font-family: Arial, sans-serif;
-            display: flex;
-            /* Para centralizar o conteúdo */
-            flex-direction: column;
-            justify-content: center;
-            /* Centraliza verticalmente */
-            align-items: center;
-            /* Centraliza horizontalmente */
-            box-sizing: border-box;
-            /* Garante que padding seja considerado */
-            overflow-y: auto;
-            /* Permite rolagem se necessário */
-        }
-
-
-        /* Container para o formulário */
-        /* CSS para ajustar largura dos cards */
-        .card-fixed-width {
-            width: 18rem;
-            /* Largura fixa para os cards */
-            margin: auto;
-            /* Centraliza o card dentro da coluna */
-        }
-
-        /* Aumentar a largura da grid */
-        .container {
-            max-width: 80%;
-            /* Define a largura máxima da grid */
-        }
-
-        .card {
-            width: 100%;
-            /* Faz o card respeitar o tamanho da coluna */
-        }
-
-        .row {
-            margin: 0;
-            /* Garante que o espaçamento entre linhas esteja correto */
-        }
-
-
-
-        .section-title {
-            text-align: center;
-            color: #2d3e3f;
-            font-size: 36px;
-            font-weight: bold;
-            padding-top: 20px;
-        }
-
-        .content-wrapper {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        .praga-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            /* 4 colunas em telas grandes */
-            padding: 20px 20px 5% 20px;
-        }
-
-        @media (max-width: 1199px) and (min-width: 1025px) {
-
-            /* Estilo para laptops e desktops convencionais */
-            .praga-item {
-                max-height: 300px;
-                /* Para cards menores */
-            }
-        }
-
-        /* Para telas médias (ex: tablets) */
-        @media (max-width: 1024px) {
-            .praga-grid {
-                grid-template-columns: repeat(3, 1fr);
-                /* 3 colunas */
-            }
-        }
-
-        /* Para telas menores (ex: celulares) */
-        @media (max-width: 768px) {
-            .praga-grid {
-                grid-template-columns: repeat(2, 1fr);
-                /* 2 colunas */
-            }
-        }
-
-        /* Para telas muito pequenas (ex: celulares em modo retrato) */
-        @media (max-width: 480px) {
-            .praga-grid {
-                grid-template-columns: 1fr;
-                /* 1 coluna */
-            }
-        }
-
-        @media (max-width: 320px) {
-            .praga-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .praga-item {
-                font-size: 14px;
-                /* Ajustar tamanho de fonte */
-            }
-
-            .btn-like,
-            .btn-dislike {
-                font-size: 12px;
-                /* Botões menores */
-                padding: 8px;
-                /* Espaçamento reduzido */
-            }
-        }
-
-
-        @media (max-width: 768px) {
-            .praga-item {
-                height: auto;
-                /* Para cards menores */
-            }
-
-            .edit-delete-wrapper {
-                flex-direction: column;
-                /* Botões em coluna no mobile */
-                gap: 5px;
-            }
-
-            .btn-edit,
-            .btn-delete {
-                width: 100%;
-                /* Botões ocupam toda a largura */
-                padding: 10px;
-            }
-        }
-
-
+    @media (max-width: 768px) {
         .praga-item {
-            background-color: #ffffff;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* Mantém espaço entre conteúdo e botões */
-            overflow: hidden;
-            position: relative;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-            max-height: 320px;
-            /* Ajusta a altura completa */
+            height: auto;
+            /* Para cards menores */
         }
 
+        .edit-delete-wrapper {
+            flex-direction: column;
+            /* Botões em coluna no mobile */
+            gap: 5px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            width: 100%;
+            /* Botões ocupam toda a largura */
+            padding: 10px;
+        }
+    }
+
+
+    .praga-item {
+        background-color: #ffffff;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* Mantém espaço entre conteúdo e botões */
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        max-height: 320px;
+        /* Ajusta a altura completa */
+    }
 
     .praga-item:hover {
         transform: translateY(-5px);
@@ -482,6 +482,7 @@
         background-color: #3C5E4B;
         ;
         color: white;
+        text-align: center;
     }
 
     .btn-edit:hover {
