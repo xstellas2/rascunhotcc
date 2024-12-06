@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block main %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 <!-- Quill.js CSS e JS -->
@@ -93,6 +95,22 @@
     };
 </script>
 <style>
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    footer .footer-container {
+        flex-direction: column; /* Empilha os itens em telas menores */
+        text-align: center;
+    }
+
+    footer .footer-right a {
+        display: block; /* Links aparecem em linhas separadas */
+        margin: 5px 0; /* Espaçamento vertical para links */
+    }
+}
+
+
 /* Estilo geral */
 body,
 html {
@@ -117,16 +135,6 @@ html {
     padding: 20px;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
-}
-
-.container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 100%;
-    margin: auto;
 }
 
 .text-h1 {
