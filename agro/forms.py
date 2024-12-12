@@ -38,3 +38,9 @@ class AgroForm(forms.ModelForm):
     class Meta:
         model = Praga
         fields = ("nome", "descricao", "imagem", "causas", "tratamento")
+
+
+class UserCreationForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    password1 = forms.CharField(max_length=100, widget=forms.PasswordInput())
+    password2 = forms.CharField(max_length=100, widget=forms.PasswordInput())

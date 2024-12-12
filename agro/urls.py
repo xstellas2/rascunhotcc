@@ -19,13 +19,14 @@ urlpatterns = [
     path('formulario/', views.formulario, name='formulario'),
     path('deletar_sugestao/<int:pk>/', deletar_sugestao, name='agro-delete'),  
     path('login/', custom_login, name='custom_login'),
+    path('cadastrar/', views.cadastrar, name='cadastrar'),
     path('nova_praga/', views.nova_praga, name='nova_praga'),
     path('agro_list/', views.agro_list, name='agro_list'),
     path('pragas/<int:praga_id>/', views.agro_detalhe, name='agro_detalhe'),
     path('agro_editar/<int:pk>/', views.agro_editar, name='agro_editar'),
     path('agro_deletar/<int:pk>/', views.agro_deletar, name='agro_deletar'),
-    path('like/<int:praga_id>/', views.like_praga, name='like_praga'),
-    path('dislike/<int:praga_id>/', views.dislike_praga, name='dislike_praga'),
+    path('like/<int:praga_id>/', views.like_praga, name='like'),
+    path('dislike/<int:praga_id>/', views.dislike_praga, name='dislike'),
     path('sair/', views.sair, name="sair")
 ]
 

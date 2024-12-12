@@ -37,7 +37,9 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="{% url 'agro:index' %}">Início</a></li>
                     <li><a class="dropdown-item" href="{% url 'agro:sobre_nos' %}">Quem somos?</a></li>
+                    
                     <li><a class="dropdown-item" href="{% url 'agro:formulario' %}">Fale conosco</a></li>
+                    
                     <li><a class="dropdown-item" href="{% url 'agro:agro_list' %}">Informações sobre pragas</a></li>
                     {% if user.is_authenticated %}
                     <li><a class="dropdown-item" href="{% url 'agro:listar_sugestoes' %}">Sugestões dadas</a></li>
@@ -56,7 +58,7 @@
         </div>
 
         <div class="d-flex align-items-center">
-            {% if user.is_authenticated %}
+            {% if user.is_staff %}
             <div class="header-sign-in">
                 <a href="{% url 'agro:nova_praga' %}" class="br-sign-in small" type="button" data-trigger="login">
                     Cadastrar</i>
@@ -87,6 +89,22 @@
 
         </div>
         <style>
+            .navbar, .footer {
+                background-color: #3a5f41; /* Cor verde do layout */
+                color: #ffffff; /* Texto em branco */
+            }
+            
+            .navbar a, .footer a {
+                color: #000000; /* Links na cor preta */
+                text-decoration: none; /* Remove o sublinhado */
+                font-weight: bold; /* Deixa os links mais destacados */
+            }
+            
+            .navbar a:hover, .footer a:hover {
+                color: #d3f0e2; /* Cor verde claro para hover */
+            }
+            
+            
             .header-sign-in {
                 display: flex;
                 align-items: center;
@@ -112,7 +130,6 @@
 
     {% block main %}
     {% endblock %}
-
     <footer class="footer  text-white mt-5">
         <div class="container">
             <div class="row py-4">

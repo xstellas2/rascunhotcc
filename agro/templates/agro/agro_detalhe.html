@@ -11,8 +11,10 @@
         <img class="small" style="max-width: 35px;" src="{% static 'img/voltar.png' %}" alt="Voltar">
     </a>
 
-    <h1 class="praga-nome">{{ praga.nome }}</h1>
-    <img src="{{ praga.imagem.url }}" alt="{{ praga.nome }}" class="praga-imagem">
+    <div class="card-img-top d-flex justify-content-center align-items-center">
+        <img src="{{ praga.imagem.url }}" class="img-fluid" alt="{{ praga.nome }}">
+    </div>
+    
 
     <div class="praga-section">
         <h2 class="praga-section-title">Descrição</h2>
@@ -44,52 +46,53 @@
 
 <script>
     function handleLike(pragaId) {
-        fetch(/like/${pragaId}/, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}',
-                'Content-Type': 'application/json' // Certifique-se de que o backend aceita JSON
-            }
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao enviar like!');
-                }
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById(like-count-${pragaId}).innerText = data.likes;
-                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
-            })
-            .catch(error => {
-                console.error('Erro no like:', error);
-            });
-    }
-
-    function handleDislike(pragaId) {
-        fetch(/dislike/${pragaId}/, {
+        fetch(`/like/${pragaId}/`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': '{{ csrf_token }}',
                 'Content-Type': 'application/json'
             }
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao enviar dislike!');
-                }
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById(like-count-${pragaId}).innerText = data.likes;
-                document.getElementById(dislike-count-${pragaId}).innerText = data.dislikes;
-            })
-            .catch(error => {
-                console.error('Erro no dislike:', error);
-            });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar like!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Verifique o conteúdo retornado
+            document.getElementById(`like-count-${pragaId}`).innerText = data.likes;
+            document.getElementById(`dislike-count-${pragaId}`).innerText = data.dislikes;
+        })
+        .catch(error => {
+            console.error('Erro no like:', error);
+        });
     }
 
+    function handleDislike(pragaId) {
+        fetch(`/dislike/${pragaId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar dislike!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById(`like-count-${pragaId}`).innerText = data.likes;
+            document.getElementById(`dislike-count-${pragaId}`).innerText = data.dislikes;
+        })
+        .catch(error => {
+            console.error('Erro no dislike:', error);
+        });
+    }
 </script>
+
 
 
 <style>
@@ -182,13 +185,11 @@
         text-align: center;
     }
 
-    .praga-imagem {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 0 auto 20px;
-        display: block;
+    .card-img-top img {
+        width: 40%; /* Ajusta a largura para o tamanho do contêiner */
+        height: 250px; /* Define uma altura fixa */
+        object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
     }
-
     .praga-section {
         margin-bottom: 20px;
     }
@@ -213,7 +214,6 @@
     .praga-descricao h1,h2,p,li{
         color: #333;
     }
-    
 
 </style>
 

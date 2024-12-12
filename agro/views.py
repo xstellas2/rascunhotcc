@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from django.core.paginator import Paginator
 from .models import Sugestao
 from .forms import SugestaoForm
 from .forms import AgroForm
@@ -10,23 +9,45 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import Praga
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
+from .forms import UserCreationForm
+
+
+def agro_list(request):
+    nome = request.GET.get('nome', '')
+    descricao = request.GET.get('descricao', '')
+    pragas = Praga.objects.all().order_by('nome')
+
+    if nome:
+        pragas = pragas.filter(nome__icontains=nome)
+
+    paginator = Paginator(pragas, 9)  # 9 itens por página
+    page_number = request.GET.get('page', 1)
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except EmptyPage:
+        page_obj = paginator.get_page(1)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+
+    return render(request, 'agro/agro_list.html', {'page_obj': page_obj, 'nome': nome, 'descricao': descricao})
 
 def like_praga(request, praga_id):
-    if request.method == 'POST':
-        praga = get_object_or_404(Praga, id=praga_id)
-        praga.likes += 1
-        praga.save()
-        return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
+    praga = Praga.objects.get(id=praga_id)
+    praga.likes += 1
+    praga.save()
+    return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
 
 def dislike_praga(request, praga_id):
-    if request.method == 'POST':
-        praga = get_object_or_404(Praga, id=praga_id)
-        praga.dislikes += 1
-        praga.save()
-        return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
+    praga = Praga.objects.get(id=praga_id)
+    praga.dislikes += 1
+    praga.save()
+    return JsonResponse({'likes': praga.likes, 'dislikes': praga.dislikes})
 
 def agro_deletar(request, pk):
-    praga = get_object_or_404(Praga, pk=pk)  # Busca a praga pelo ID ou retorna um 404
+    praga = get_object_or_404(Praga, pk=pk) 
     praga.delete()  # Deleta a praga
     
     return redirect('agro:agro_list')  
@@ -41,7 +62,6 @@ def agro_editar(request, pk):
     else:
         form = AgroForm(instance=praga)  
     return render(request, 'agro/agro_editar.html', {'form': form, 'praga': praga})
-
 
 
 def agro_detalhe(request, praga_id):
@@ -61,14 +81,6 @@ def nova_praga(request):
     
     return render(request, 'agro/nova_praga.html', {'form': form})
 
-# View para listar as pragas cadastradas
-def agro_list(request):
-    pragas = Praga.objects.all()  # Consulta os dados do modelo
-    paginator = Paginator(pragas, 8)  # 9 itens por página
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    return render(request, 'agro/agro_list.html', {'page_obj': page_obj})
 
 def custom_login(request):
     if request.method == 'POST':
@@ -79,18 +91,41 @@ def custom_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('agro:agro_list')  
+                return redirect('agro:index')  # Certifique-se de usar o nome da rota correto
             else:
                 messages.error(request, "Nome de usuário ou senha inválidos.")
         else:
             messages.error(request, "Nome de usuário ou senha inválidos.")
     else:
         form = AuthenticationForm()
-    
+
     return render(request, 'login.html', {'form': form})
 
 
+def cadastrar(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            senha = form.cleaned_data.get('password1')
+            senha2 = form.cleaned_data.get('password2')
+            user = User.objects.filter(username=username).first()
+            print(user)
+            if (user is None):
+                print('oi')
+                if (senha == senha2):
+                    user = User.objects.create_user(username=username, password=senha)
+                    user.save()
+                    return redirect('agro:custom_login')
+                else:
+                    messages.warning(request, "As senhas não coincidem.")
+            else:
+                messages.warning(request, "Nome de usuário ou senha inválidos.")
+    return render(request, 'cadastrar.html', context={'form': form})
 
+
+@login_required
 def salvar_sugestao(request):
     if request.method == 'POST':
         form = SugestaoForm(request.POST)
@@ -134,7 +169,6 @@ def sobre_nos(request):
 
 def formulario(request):
     return render(request, 'formulario.html')
-
 
 def sair(request):
     logout(request)

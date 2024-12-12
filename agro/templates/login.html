@@ -11,7 +11,7 @@
 <div class="main-content" id="main-content">
   <div class="row justify-content-center align-items-center">
     <div class="div-system-access col-md-5 col-lg-5 col-xl-5 col-12">
-      <h1 class="text-h1">{% translate "Acesso ao Sistema" %}</h1>
+      <h1 class="text-h1">{% translate "Acesse nossas funcionalidades" %}</h1>
       <form class="login" method="POST" action=".">
         {% csrf_token %}
         <div class="br-input">
@@ -37,6 +37,7 @@
             <p>{% translate "Digite sua senha de segurança." %}</p>
           </div>
         </div>
+        <p class="link-p">Ainda não possui conta? <a href="{% url 'agro:cadastrar' %}">Cadastre-se</a></p>
         <button class="primaryAction br-button primary block" type="submit">{% translate "Sign In" %}</button>
       </form>
       <span class="br-divider my-3"></span>
@@ -96,6 +97,10 @@
         font-size: 0.9rem;
         color: #666;
         margin-top: 5px;
+    }
+
+    .link-p {
+      color: #666;
     }
 
     /* Estilo dos ícones */

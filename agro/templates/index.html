@@ -12,7 +12,17 @@
 </head>
 
 <body>
+
+
     <main>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <!-- Primeira Seção -->
         <section class="py-5">
             <div class="container">
@@ -72,11 +82,6 @@
                 </div>
             </div>
         </section>
-
-        
-        
-        
-
 
 
         <!-- Segunda Seção -->
@@ -142,6 +147,25 @@
 </body>
 
 <style>
+    .messages {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .messages li {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+    .messages .success {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+    .messages .error {
+        background-color: #f2dede;
+        color: #a94442;
+    }
+    
     #topicos-pragas {
         font-family: 'Poppins', sans-serif; /* Fonte estilosa e limpa */
         color: #e8e8e8; /* Cor branca gelo (semelhante ao texto da imagem) */

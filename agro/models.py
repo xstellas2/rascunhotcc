@@ -12,14 +12,9 @@ class Sugestao(models.Model):
     def __str__(self):
         return self.nome
     
-class Agro(models.Model):
-    localizacao = models.CharField(max_length=100)  # Exemplo de campo
-    valor = models.DecimalField(max_digits=10, decimal_places=2)  # Exemplo de campo
-
-    def __str__(self):
-        return f"{self.localizacao} - {self.valor}"
 
 from ckeditor.fields import RichTextField
+
 
 class Praga(models.Model):
     nome = models.CharField(max_length=100)
@@ -36,6 +31,7 @@ class Praga(models.Model):
     tratamento = RichTextField(blank=True, null=True)  # Campo formatado
 
     class Meta:
+        ordering = ['nome']
         verbose_name = "Praga"
         verbose_name_plural = "Pragas"
 

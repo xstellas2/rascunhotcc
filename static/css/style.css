@@ -24,25 +24,6 @@ html, body {
     flex-grow: 1; /* Faz com que a grid ocupe o espaço restante */
 }
 
-/* Garantir que o conteúdo dentro do main ocupe toda a altura */
-.main {
-    height: 100vh;
-}
-
-* {
-    margin: 0;
-    padding: 0; /* Adiciona padding 0 para evitar espaços inesperados */
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura e altura */
-}
-
-header {
-    background-color: #3C5E4B;
-    height: 108px;
-}
-
-main {
-    background: #C8C8C8;
-}
 
 :root {
     --primary-color: #007bff; 
@@ -50,68 +31,6 @@ main {
     --background-color: #3C5E4B;
     --hover-color: #0056b3; 
     --text-color: #C8C8C8; 
-}
-
-.footer {
-    background-color: var(--background-color); /* Cor de fundo do footer */
-    padding: 2rem 5%; /* Espaçamento interno */
-}
-
-.footer-top {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--secondary-color); /* Linha divisória entre seções */
-}
-
-.footer-logo h1 {
-    margin-bottom: 1rem;
-    color: #C8C8C8; /* Cor preta para o nome "PragaZero" */
-}
-
-.footer-logo .social-media {
-    margin-top: 1rem;
-}
-
-.footer-logo .social-media a {
-    margin: 0 0.5rem;
-}
-
-.footer-logo .social-media img {
-    width: 24px; /* Ajuste o tamanho dos ícones sociais */
-    transition: transform 0.3s ease; /* Transição suave para efeito de hover */
-}
-
-.footer-logo .social-media a:hover img {
-    transform: scale(1.1); /* Aumenta o ícone ao passar o mouse */
-}
-
-.footer-links {
-    margin-top: 1rem;
-}
-
-.footer-link-group {
-    margin: 0 1rem;
-}
-
-.footer-link-group h2 {
-    margin-bottom: 0.5rem;
-    color: #C8C8C8; /* Cor preta para os títulos dos links */
-}
-
-.footer-link-group a {
-    color: var(--secondary-color); /* Cor dos links */
-    text-decoration: none;
-    transition: color 0.3s ease; /* Transição suave para a cor do link */
-}
-
-.footer-link-group a:hover {
-    color: var(--primary-color); /* Cor do link ao passar o mouse */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
-}
-
-.footer-bottom {
-    padding-top: 1rem;
-    border-top: 1px solid var(--secondary-color); /* Linha divisória superior */
-    color: var(--text-color); /* Cor do texto */
 }
 
 
